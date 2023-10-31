@@ -10,7 +10,6 @@ class CardLimit extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final percentage = used * 100 ~/ limit;
-    print(percentage);
     return Column(
       children: [
         Padding(
@@ -70,11 +69,11 @@ class CardLimit extends StatelessWidget {
           children: [
             Text(
               used.toStringAsFixed(2),
-              style: theme.textTheme.labelMedium,
+              style: theme.textTheme.bodyMedium,
             ),
             Text(
               limit.toStringAsFixed(2),
-              style: theme.textTheme.labelMedium,
+              style: theme.textTheme.bodyMedium,
             )
           ],
         )
