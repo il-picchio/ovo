@@ -12,7 +12,7 @@ class CardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Background(
-      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
       decorations: Decorations.cards(context),
       children: [
         Text(
@@ -30,8 +30,8 @@ class CardPage extends StatelessWidget {
           cardBgColor: Theme.of(context).colorScheme.secondary,
           onCreditCardWidgetChange: (brand) {},
         ),
-        Padding(
-          padding: const EdgeInsets.only(right: 15.0, left: 15.0, top: 10.0, bottom: 20.0),
+        const Padding(
+          padding: EdgeInsets.only(right: 15.0, left: 15.0, top: 10.0, bottom: 20.0),
           child: CardLimit(limit: 10000, used: 7300),
         ),
         Row(

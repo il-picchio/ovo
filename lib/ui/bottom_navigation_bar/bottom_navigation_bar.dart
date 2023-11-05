@@ -55,8 +55,8 @@ class OvoNavigationBar extends StatelessWidget {
                   blendMode: BlendMode.srcIn,
                   shaderCallback: (Rect bounds) {
                     return ui.Gradient.linear(
-                      Offset(0, 24.0),
-                      Offset(24.0, 0),
+                      const Offset(0, 24.0),
+                      const Offset(24.0, 0),
                       [
                         Theme.of(context).colorScheme.primary,
                         Theme.of(context).colorScheme.secondary,

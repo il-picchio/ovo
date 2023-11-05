@@ -12,7 +12,7 @@ class ChartBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tooltip(
       preferBelow: false,
-      padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
       textAlign: TextAlign.center,
       textStyle: const TextStyle(color: Colors.black),
       decoration: BoxDecoration(
