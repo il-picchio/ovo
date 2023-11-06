@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ovo/models/movement.dart';
+import 'package:ovo/theme/elements/colors.dart';
 import 'package:ovo/ui/common/widgets/list_element_tile.dart';
 import 'package:ovo/ui/pages/home/movements/movement_details.dart';
 
@@ -10,6 +11,9 @@ class MovementContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final brandColors = theme.extension<BrandColors>()!;
+
     return ListElementTile(
       onTap: () {
         showModalBottomSheet(
@@ -44,8 +48,8 @@ class MovementContainer extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(20.0)),
           color: movement.amount.isPositive
-              ? Colors.green.shade200
-              : Theme.of(context).colorScheme.secondary,
+              ? brandColors.positiveAmounts
+              : brandColors.negativeAmounts,
         ),
         child: Text(
           '${movement.amount.toString()} ${movement.currency}',

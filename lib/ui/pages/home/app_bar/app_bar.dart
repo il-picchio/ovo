@@ -15,60 +15,63 @@ class HomeAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Background(
       decorations: Decorations.home(context),
-      children: [
-        Text(
-          'Patrimonio totale',
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 20.0),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * (1 - animationControllerValue / 2),
-                  child: Text(
-                    'CHF 2\'000\'000.54',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                    textAlign: TextAlign.center,
+      child: Column(
+        children: [
+          Text(
+            'Patrimonio totale',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width *
+                        (1 - animationControllerValue / 2),
+                    child: Text(
+                      'CHF 2\'000\'000.54',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                ),
-                Opacity(
-                    opacity: animationControllerValue,
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Chart(
-                        investments: 4000,
-                        account: 1000,
-                      ),
-                    )),
-              ],
-            ),
-          ),
-        ),
-        Container(
-          height: 30,
-          decoration: BoxDecoration(
-            border: Border(
-              top: BorderSide(color: Colors.grey.shade200),
-              left: BorderSide(color: Colors.grey.shade200),
-              right: BorderSide(color: Colors.grey.shade200),
-              bottom: BorderSide(color: Colors.grey.shade200, width: 0),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.shade400,
-                blurRadius: 30,
+                  Opacity(
+                      opacity: animationControllerValue,
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Chart(
+                          investments: 4000,
+                          account: 1000,
+                        ),
+                      )),
+                ],
               ),
-            ],
-            color: Colors.white,
-            borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(20.0),
-                topRight: Radius.circular(20.0)),
+            ),
           ),
-        )
-      ],
+          Container(
+            height: 30,
+            decoration: BoxDecoration(
+              border: Border(
+                top: BorderSide(color: Colors.grey.shade200),
+                left: BorderSide(color: Colors.grey.shade200),
+                right: BorderSide(color: Colors.grey.shade200),
+                bottom: BorderSide(color: Colors.grey.shade200, width: 0),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade400,
+                  blurRadius: 30,
+                ),
+              ],
+              color: Colors.white,
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(20.0)),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

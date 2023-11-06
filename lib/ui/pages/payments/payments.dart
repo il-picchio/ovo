@@ -11,39 +11,41 @@ class PaymentsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Background(
       decorations: Decorations.payments(context),
-      alignment: MainAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Card(
-            elevation: 20,
-            child: Column(
-              children: [
-                PaymentAction(
-                  icon: FontAwesomeIcons.moneyBillTransfer,
-                  text: 'Bonifico',
-                  onTap: () {},
-                ),
-                Divider(
-                  color: Colors.indigo.shade100.withOpacity(0.5),
-                  indent: 40,
-                  endIndent: 40,
-                  height: 0.2,
-                ),
-                PaymentAction(
-                  icon: FontAwesomeIcons.qrcode,
-                  text: 'QR',
-                  onTap: () {},
-                ),
-                PaymentAction(
-                    icon: FontAwesomeIcons.fileInvoice,
-                    text: 'EBill',
-                    onTap: () {})
-              ],
-            ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Card(
+          elevation: 20,
+          child: Column(
+            children: [
+              PaymentAction(
+                icon: FontAwesomeIcons.moneyBillTransfer,
+                text: 'Bonifico',
+                onTap: () {},
+              ),
+              Divider(
+                color: Colors.indigo.shade100.withOpacity(0.5),
+                indent: 40,
+                endIndent: 40,
+                height: 0.2,
+              ),
+              PaymentAction(
+                icon: FontAwesomeIcons.qrcode,
+                text: 'QR',
+                onTap: () {},
+              ),
+              PaymentAction(
+                  icon: FontAwesomeIcons.fileInvoice,
+                  text: 'EBill',
+                  onTap: () {})
+            ],
           ),
-        )
-      ],
+        ),
+      )
+        ],
+      ),
     );
   }
 }

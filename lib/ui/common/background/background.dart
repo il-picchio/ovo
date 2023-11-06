@@ -4,17 +4,14 @@ import 'package:ovo/ui/common/background/position.dart';
 
 class Background extends StatelessWidget {
   final EdgeInsets padding;
-  final List<Widget> children;
+  final Widget child;
   final List<Position> decorations;
-  final MainAxisAlignment alignment;
 
   const Background(
       {super.key,
-      required this.children,
+      required this.child,
       required this.decorations,
-      this.padding = const EdgeInsets.all(0.0),
-      this.alignment = MainAxisAlignment.start
-    });
+      this.padding = const EdgeInsets.all(0.0)});
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +28,11 @@ class Background extends StatelessWidget {
         ),
         SafeArea(
           minimum: const EdgeInsets.only(top: 30.0),
-            child: Padding(
-          padding: padding,
-          child: Column(
-            mainAxisAlignment: alignment,
-            children: children,
+          child: Padding(
+            padding: padding,
+            child: child,
           ),
-        ))
+        ),
       ],
     );
   }

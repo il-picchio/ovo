@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ovo/ui/home.dart';
-import 'package:ovo/theme/theme.dart';
+import 'package:ovo/theme/light/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ovoTheme,
+      theme: ovoLightTheme,
       home: const MainPage(),
     );
   }

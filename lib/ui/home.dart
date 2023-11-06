@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:ovo/ui/bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:ovo/ui/pages/card/card.dart';
 import 'package:ovo/ui/pages/home/home.dart';
+import 'package:ovo/ui/pages/investments/investments.dart';
 import 'package:ovo/ui/pages/payments/payments.dart';
 
 class MainPage extends StatefulWidget {
@@ -51,7 +52,7 @@ class _MainPageState extends State<MainPage> {
             PaymentsPage(),
             CardPage(),
             HomePage(),
-            Text('test2'),
+            InvestmentsPage(),
             Text('test3'),
           ],
         ),

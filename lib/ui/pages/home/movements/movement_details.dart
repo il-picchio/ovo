@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ovo/models/movement.dart';
+import 'package:ovo/theme/elements/colors.dart';
 import 'package:ovo/ui/pages/home/movements/detail.dart';
 
 class MovementDetails extends StatelessWidget {
@@ -9,6 +10,8 @@ class MovementDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return SingleChildScrollView(
       child: SafeArea(
         child: Padding(
@@ -21,7 +24,7 @@ class MovementDetails extends StatelessWidget {
                   height: 70,
                   width: 70,
                   decoration: BoxDecoration(
-                    color: Colors.indigo.shade100,
+                    color: theme.extension<BrandColors>()!.tertiary,
                     shape: BoxShape.circle
                   ),
                   child: Icon(movement.type.icon, size: 30,),

@@ -14,35 +14,45 @@ class CardPage extends StatelessWidget {
     return Background(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       decorations: Decorations.cards(context),
-      children: [
-        Text(
-          'Ovo Debit Card',
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
-        CreditCardWidget(
-          textStyle: TextStyle(fontFamily: 'Montserrat', fontSize: 18),
-          cardNumber: '000 000 0000 0000 000',
-          expiryDate: '10/26',
-          cardHolderName: 'Test Name',
-          cvvCode: '000',
-          showBackView: false,
-          cardType: CardType.mastercard,
-          cardBgColor: Theme.of(context).colorScheme.secondary,
-          onCreditCardWidgetChange: (brand) {},
-        ),
-        const Padding(
-          padding: EdgeInsets.only(right: 15.0, left: 15.0, top: 10.0, bottom: 20.0),
-          child: CardLimit(limit: 10000, used: 7300),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            CreditCardAction(icon: FontAwesomeIcons.eye, text: 'Show details',),
-            CreditCardAction(icon: FontAwesomeIcons.gear, text: 'Settings'),
-            CreditCardAction(icon: FontAwesomeIcons.snowflake, text: 'Freeze', color: Colors.blue.shade200,)
-          ],
-        )
-      ],
+      child: Column(
+        children: [
+          Text(
+            'Ovo Debit Card',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+          CreditCardWidget(
+            textStyle: TextStyle(fontFamily: 'Montserrat', fontSize: 18),
+            cardNumber: '000 000 0000 0000 000',
+            expiryDate: '10/26',
+            cardHolderName: 'Test Name',
+            cvvCode: '000',
+            showBackView: false,
+            cardType: CardType.mastercard,
+            cardBgColor: Theme.of(context).colorScheme.secondary,
+            onCreditCardWidgetChange: (brand) {},
+          ),
+          const Padding(
+            padding: EdgeInsets.only(
+                right: 15.0, left: 15.0, top: 10.0, bottom: 20.0),
+            child: CardLimit(limit: 10000, used: 7300),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              CreditCardAction(
+                icon: FontAwesomeIcons.eye,
+                text: 'Show details',
+              ),
+              CreditCardAction(icon: FontAwesomeIcons.gear, text: 'Settings'),
+              CreditCardAction(
+                icon: FontAwesomeIcons.snowflake,
+                text: 'Freeze',
+                color: Colors.blue.shade200,
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }

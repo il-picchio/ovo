@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ovo/theme/elements/colors.dart';
 
 class ListElementTile extends StatelessWidget {
   final IconData icon;
@@ -15,6 +16,8 @@ class ListElementTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<BrandColors>()!;
+
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -26,7 +29,7 @@ class ListElementTile extends StatelessWidget {
               width: 45,
               height: 45,
               decoration: BoxDecoration(
-                  shape: BoxShape.circle, color: Colors.indigo.shade100),
+                  shape: BoxShape.circle, color: theme.tertiary),
               child: Icon(
                 icon,
                 size: 20.0,

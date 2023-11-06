@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ovo/theme/elements/colors.dart';
 
 class CardLimit extends StatelessWidget {
   final double limit;
@@ -49,10 +50,7 @@ class CardLimit extends StatelessWidget {
                           left: Radius.circular(20.0),
                           right: Radius.circular(20.0),
                         ),
-                        gradient: LinearGradient(colors: [
-                          theme.colorScheme.primary,
-                          theme.colorScheme.secondary
-                        ], begin: Alignment.bottomLeft, end: Alignment.topRight),
+                        gradient: theme.extension<BrandColors>()!.gradient,
                       ),
                     ),
                   ),
