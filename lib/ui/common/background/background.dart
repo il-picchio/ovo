@@ -6,12 +6,15 @@ class Background extends StatelessWidget {
   final EdgeInsets padding;
   final List<Widget> children;
   final List<Position> decorations;
+  final MainAxisAlignment alignment;
 
   const Background(
       {super.key,
       required this.children,
       required this.decorations,
-      this.padding = const EdgeInsets.all(0.0)});
+      this.padding = const EdgeInsets.all(0.0),
+      this.alignment = MainAxisAlignment.start
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +34,7 @@ class Background extends StatelessWidget {
             child: Padding(
           padding: padding,
           child: Column(
+            mainAxisAlignment: alignment,
             children: children,
           ),
         ))
