@@ -20,12 +20,12 @@ class CreditCardAction extends StatelessWidget {
     return Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        border: Border.all(color: theme.colorScheme.surfaceTint),
         shape: BoxShape.circle,
         color: theme.colorScheme.surfaceTint,
         boxShadow: shadows,
       ),
       child: Material(
+        color: Colors.transparent,
         child: InkWell(
             onTap: () {},
             child: Padding(

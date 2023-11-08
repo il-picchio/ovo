@@ -29,6 +29,11 @@ final ovoLightTheme = ThemeData(
       borderRadius: BorderRadius.circular(200),
     ),
   ),
+  textButtonTheme: const TextButtonThemeData(
+    style: ButtonStyle(
+      foregroundColor: MaterialStatePropertyAll(_kSecondaryColor)
+    )
+  ),
   colorScheme: const ColorScheme(
     brightness: Brightness.light,
     primary: _kPrimaryColor,

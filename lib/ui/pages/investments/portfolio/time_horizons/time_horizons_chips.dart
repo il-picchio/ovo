@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ovo/ui/pages/investments/time_horizons/time_horizons.dart';
+import 'package:ovo/ui/common/widgets/chip.dart';
+import 'package:ovo/ui/pages/investments/portfolio/time_horizons/time_horizons.dart';
 
 class TimeHorizonChips extends StatefulWidget {
   final TimeHorizon initialState;
@@ -30,47 +31,50 @@ class _TimeHorizonChipsState extends State<TimeHorizonChips> {
       child: Wrap(
         spacing: 15.0,
         children: [
-          ChoiceChip(
-            showCheckmark: false,
-            label: Text('Week'),
+          OvoChip(
             selected: _state == TimeHorizon.week,
-            onSelected: (value) {
+            text: 'Week', 
+            onTap: () {
               setState(() => _state = TimeHorizon.week);
               widget.onSelectionChanged(TimeHorizon.week);
             },
           ),
-          ChoiceChip(
-            showCheckmark: false,
-            label: Text('1m'),
+          OvoChip(
             selected: _state == TimeHorizon.month,
-            onSelected: (value) {
+            text: '1m', 
+            onTap: () {
               setState(() => _state = TimeHorizon.month);
               widget.onSelectionChanged(TimeHorizon.month);
             },
           ),
-          ChoiceChip(
-            showCheckmark: false,
-            label: Text('3m'),
+          OvoChip(
             selected: _state == TimeHorizon.threeMonths,
-            onSelected: (value) {
+            text: '3m', 
+            onTap: () {
               setState(() => _state = TimeHorizon.threeMonths);
               widget.onSelectionChanged(TimeHorizon.threeMonths);
             },
           ),
-          ChoiceChip(
-            showCheckmark: false,
-            label: Text('6m'),
+          OvoChip(
             selected: _state == TimeHorizon.sixMonths,
-            onSelected: (value) {
+            text: '6m', 
+            onTap: () {
               setState(() => _state = TimeHorizon.sixMonths);
               widget.onSelectionChanged(TimeHorizon.sixMonths);
             },
           ),
-          ChoiceChip(
-            showCheckmark: false,
-            label: Text('YTD'),
+          OvoChip(
+            selected: _state == TimeHorizon.year,
+            text: '1y', 
+            onTap: () {
+              setState(() => _state = TimeHorizon.year);
+              widget.onSelectionChanged(TimeHorizon.year);
+            },
+          ),
+          OvoChip(
             selected: _state == TimeHorizon.ytd,
-            onSelected: (value) {
+            text: 'YTD', 
+            onTap: () {
               setState(() => _state = TimeHorizon.ytd);
               widget.onSelectionChanged(TimeHorizon.ytd);
             },

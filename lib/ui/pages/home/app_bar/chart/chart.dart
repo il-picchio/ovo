@@ -8,7 +8,7 @@ import 'package:ovo/ui/pages/home/app_bar/chart/painter/pie_chart.dart';
 import 'package:ovo/ui/pages/home/app_bar/chart/painter/pie_data.dart';
 
 class Chart extends StatelessWidget {
-  static const double _strokeWidth = 20;
+  static const double _strokeWidth = 10;
 
   final double investments;
   final double account;
@@ -62,7 +62,7 @@ class Chart extends StatelessWidget {
           children: [
             Positioned.fill(
               child: Padding(
-                padding: const EdgeInsets.all(50),
+                padding: const EdgeInsets.all(47),
                 child: PieChart(
                   data: chartData,
                   radius: width,

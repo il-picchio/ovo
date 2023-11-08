@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           backgroundColor: Colors.white,
           pinned: true,
           expandedHeight: 450,
-          collapsedHeight: 130,
+          collapsedHeight: 140,
           flexibleSpace: HomeAppBar(
             animationControllerValue: _animationController.value,
           ),

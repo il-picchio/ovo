@@ -14,8 +14,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ovoLightTheme,
-      home: const MainPage(),
+      routes: Map.of({
+        '/': (context) => const MainPage(),
+      }),
+      initialRoute: '/',
+      theme: ovoLightTheme
     );
   }
 }
