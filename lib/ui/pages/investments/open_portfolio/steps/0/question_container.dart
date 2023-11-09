@@ -6,8 +6,9 @@ import '__mock/questions.dart';
 
 class QuestionContainer extends StatefulWidget {
   final void Function(int) onFinish;
+  final void Function(double) onProgress;
 
-  const QuestionContainer({super.key, required this.onFinish});
+  const QuestionContainer({super.key, required this.onFinish, required this.onProgress});
 
   @override
   State<QuestionContainer> createState() => _QuestionContainerState();
@@ -59,6 +60,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
                         : _points.putIfAbsent(_step, () => answer.points);
                     if (_step < _maxStep) {
                       setState(() => _step++);
+                      widget.onProgress(_step/_maxStep);
                       return;
                     }
                     print(_points.values.sum);
@@ -85,6 +87,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
                     onPressed: () {
                       _points.remove(_step);
                       setState(() => _step--);
+                      widget.onProgress(_step/_maxStep);
                     },
                     child: Text('Previous question'),
                   ),

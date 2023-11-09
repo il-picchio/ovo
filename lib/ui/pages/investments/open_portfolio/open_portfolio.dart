@@ -18,9 +18,8 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
     switch (step) {
       case 0:
         return PortfolioOpenStep0(
-          onProceed: () => setState(() => _step++),
-          onExit: () => Navigator.pop(context),
-        );
+            onProceed: () => setState(() => _step++),
+            onProgress: (progress) => setState(() => _progress = progress));
       case 1:
         return PortfolioOpenStep1();
       default:
@@ -29,6 +28,7 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
   }
 
   int _step = 0;
+  double _progress = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +48,17 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              LinearProgressIndicator(
-                value: (_step + 1)/3,
-                color: Colors.indigo.shade100,
-                backgroundColor: Colors.grey.shade200,
+              TweenAnimationBuilder(
+                duration: Duration(milliseconds: 500),
+                tween: Tween<double>(
+                  begin: 0,
+                  end: _progress
+                ),
+                builder: (context, value, child) => LinearProgressIndicator(
+                    value: (value) / 3,
+                    color: Colors.indigo.shade100,
+                    backgroundColor: Colors.grey.shade200,
+                  ),
               ),
               Expanded(
                 child: AnimatedSwitcher(
