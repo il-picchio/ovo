@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ovo/ui/common/background/background.dart';
 import 'package:ovo/ui/common/background/decorations.dart';
+import 'package:ovo/ui/pages/investments/empty/empty_page.dart';
 import 'package:ovo/ui/pages/investments/portfolio/portfolio_page.dart';
 
 class InvestmentsPage extends StatelessWidget {
@@ -10,7 +11,7 @@ class InvestmentsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Background(
       decorations: Decorations.investments(context),
-      child: PortfolioPage(),
+      child: EmptyPage(),
     );
   }
 }

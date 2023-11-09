@@ -27,7 +27,6 @@ class Background extends StatelessWidget {
           ),
         ),
         SafeArea(
-          minimum: const EdgeInsets.only(top: 30.0),
           child: Padding(
             padding: padding,
             child: child,

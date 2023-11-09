@@ -22,7 +22,9 @@ class EmptyPage extends StatelessWidget {
           'Motivation text',
           style: theme.textTheme.bodyMedium,
         ),
-        TextButton(onPressed: (){}, child: Text('Understand more')),
+        TextButton(
+            onPressed: () {},
+            child: Text('Understand more')),
         SizedBox(
           height: 50,
         ),

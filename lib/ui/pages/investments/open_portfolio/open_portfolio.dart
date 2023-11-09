@@ -1,0 +1,68 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ovo/theme/elements/colors.dart';
+import 'package:ovo/ui/common/background/background.dart';
+import 'package:ovo/ui/common/background/decorations.dart';
+import 'package:ovo/ui/pages/investments/open_portfolio/steps/0/step_0.dart';
+import 'package:ovo/ui/pages/investments/open_portfolio/steps/step_1.dart';
+
+class OpenPortfolioPage extends StatefulWidget {
+  const OpenPortfolioPage({super.key});
+
+  @override
+  State<OpenPortfolioPage> createState() => _OpenPortfolioPageState();
+}
+
+class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
+  _getStep({required BuildContext context, required int step}) {
+    switch (step) {
+      case 0:
+        return PortfolioOpenStep0(
+          onProceed: () => setState(() => _step++),
+          onExit: () => Navigator.pop(context),
+        );
+      case 1:
+        return PortfolioOpenStep1();
+      default:
+        throw ArgumentError.value(step, 'No Step found');
+    }
+  }
+
+  int _step = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<BrandColors>()!;
+
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Text('Open portfolio'),
+        actions: const [Icon(FontAwesomeIcons.xmark)],
+      ),
+      body: Background(
+        decorations: Decorations.investments(context),
+        child: SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              LinearProgressIndicator(
+                value: (_step + 1)/3,
+                color: Colors.indigo.shade100,
+                backgroundColor: Colors.grey.shade200,
+              ),
+              Expanded(
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 300),
+                  child: _getStep(context: context, step: _step),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
