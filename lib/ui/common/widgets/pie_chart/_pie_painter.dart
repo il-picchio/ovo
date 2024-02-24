@@ -1,6 +1,4 @@
-import 'package:flutter/widgets.dart';
-import 'package:ovo/ui/pages/home/app_bar/chart/_consts.dart';
-import 'package:ovo/ui/pages/home/app_bar/chart/painter/pie_data.dart';
+part of 'pie_chart.dart';
 
 class PiePainter extends CustomPainter {
   final double strokeWidth;
@@ -17,10 +15,10 @@ class PiePainter extends CustomPainter {
 
     // keep track of start angle for next stroke
     // starting from top
-    double startAngle = -1.570796 + kPaddingInRadians / 2;
+    double startAngle = -1.570796 + kPieChartPaddingInRadians / 2;
 
     for (final data in paints) {
-      final angle = (data.adjustedPercent - kPadding) * kPercentInRadians;
+      final angle = (data.adjustedPercent - kPieChartPadding) * kPercentInRadians;
 
       final paint = _createPaint(data);
 
@@ -28,7 +26,7 @@ class PiePainter extends CustomPainter {
 
       canvas.drawPath(path, paint);
 
-      startAngle += angle + kPaddingInRadians;
+      startAngle += angle + kPieChartPaddingInRadians;
     }
   }
 

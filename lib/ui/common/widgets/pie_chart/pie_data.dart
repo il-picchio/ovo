@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'pie_chart.dart';
 
 class PieChartData {
   const PieChartData(

@@ -5,6 +5,7 @@ import 'package:ovo/ui/common/background/background.dart';
 import 'package:ovo/ui/common/background/decorations.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/0/step_0.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/step_1.dart';
+import 'package:ovo/ui/pages/investments/open_portfolio/steps/step_2.dart';
 
 class OpenPortfolioPage extends StatefulWidget {
   const OpenPortfolioPage({super.key});
@@ -21,7 +22,12 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
             onProceed: () => setState(() => _step++),
             onProgress: (progress) => setState(() => _progress = progress));
       case 1:
-        return PortfolioOpenStep1();
+        return PortfolioOpenStep1(onProceed: () => setState(() {
+          _progress = 2;
+          step++;
+        }));
+      case 2:
+        return PortfolioOpenStep2();
       default:
         throw ArgumentError.value(step, 'No Step found');
     }
@@ -48,17 +54,17 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              TweenAnimationBuilder(
-                duration: Duration(milliseconds: 500),
-                tween: Tween<double>(
-                  begin: 0,
-                  end: _progress
-                ),
-                builder: (context, value, child) => LinearProgressIndicator(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: TweenAnimationBuilder(
+                  duration: const Duration(milliseconds: 500),
+                  tween: Tween<double>(begin: 0, end: _progress),
+                  builder: (context, value, child) => LinearProgressIndicator(
                     value: (value) / 3,
                     color: Colors.indigo.shade100,
                     backgroundColor: Colors.grey.shade200,
                   ),
+                ),
               ),
               Expanded(
                 child: AnimatedSwitcher(

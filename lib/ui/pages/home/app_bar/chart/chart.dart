@@ -2,10 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ovo/ui/pages/home/app_bar/chart/_consts.dart';
+import 'package:ovo/ui/common/widgets/pie_chart/pie_chart.dart';
 import 'package:ovo/ui/pages/home/app_bar/chart/badge.dart';
-import 'package:ovo/ui/pages/home/app_bar/chart/painter/pie_chart.dart';
-import 'package:ovo/ui/pages/home/app_bar/chart/painter/pie_data.dart';
 
 class Chart extends StatelessWidget {
   static const double _strokeWidth = 10;
