@@ -4,8 +4,8 @@ import 'package:ovo/theme/elements/colors.dart';
 import 'package:ovo/ui/common/background/background.dart';
 import 'package:ovo/ui/common/background/decorations.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/0/step_0.dart';
+import 'package:ovo/ui/pages/investments/open_portfolio/steps/0/step_2.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/step_1.dart';
-import 'package:ovo/ui/pages/investments/open_portfolio/steps/step_2.dart';
 
 class OpenPortfolioPage extends StatefulWidget {
   const OpenPortfolioPage({super.key});

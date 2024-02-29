@@ -2,10 +2,10 @@ part of 'pie_chart.dart';
 
 class PiePainter extends CustomPainter {
   final double strokeWidth;
-  final Iterable<PieChartData> paints;
+  final Iterable<SinglePieChartData> paints;
 
   PiePainter(
-      {required this.strokeWidth, Iterable<PieChartData> paintData = const []})
+      {required this.strokeWidth, Iterable<SinglePieChartData> paintData = const []})
       : paints = paintData.where((element) => element.adjustedPercent > 0),
         assert(paintData.where((element) => element.adjustedPercent > 0).isNotEmpty);
 
@@ -13,12 +13,16 @@ class PiePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final rect = Offset.zero & size;
 
+    final pieChartPadding = paints.length == 1 ? 0 : kPieChartPadding;
+    final pieChartPaddingInRadians = pieChartPadding * kPercentInRadians;
+
     // keep track of start angle for next stroke
     // starting from top
-    double startAngle = -1.570796 + kPieChartPaddingInRadians / 2;
+    double startAngle = -1.570796 + pieChartPaddingInRadians / 2;
+
 
     for (final data in paints) {
-      final angle = (data.adjustedPercent - kPieChartPadding) * kPercentInRadians;
+      final angle = (data.adjustedPercent - pieChartPadding) * kPercentInRadians;
 
       final paint = _createPaint(data);
 
@@ -26,11 +30,11 @@ class PiePainter extends CustomPainter {
 
       canvas.drawPath(path, paint);
 
-      startAngle += angle + kPieChartPaddingInRadians;
+      startAngle += angle + pieChartPaddingInRadians;
     }
   }
 
-  Paint _createPaint(PieChartData data) {
+  Paint _createPaint(SinglePieChartData data) {
     return Paint()
       ..color = data.color
       ..style = PaintingStyle.stroke

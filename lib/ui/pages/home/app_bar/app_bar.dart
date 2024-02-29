@@ -41,8 +41,8 @@ class HomeAppBar extends StatelessWidget {
                       child: const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10.0),
                         child: Chart(
-                          investments: 4000,
-                          account: 1000,
+                          investments: 140000.54,
+                          account: 600000,
                         ),
                       )),
                 ],

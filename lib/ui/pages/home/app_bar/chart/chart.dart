@@ -13,38 +13,20 @@ class Chart extends StatelessWidget {
 
   const Chart({super.key, required this.account, required this.investments});
 
-  Iterable<PieChartData> _normalizeData(BuildContext context) {
+  PieChartData _normalizeData(BuildContext context) {
     final total = investments + account;
     if (total == 0 || investments == 0) {
-      return [
-        PieChartData(
-            color: Theme.of(context).colorScheme.primary,
-            percent: 100,
-            adjustedPercent: 100)
-      ];
+      return PieChartData(chartData: [
+        InitialPieChartData(
+            color: Theme.of(context).colorScheme.primary, value: account)
+      ]);
     }
-    if (account == 0) {
-      return [
-        PieChartData(
-            color: Theme.of(context).colorScheme.primary,
-            percent: 0,
-            adjustedPercent: 0),
-        PieChartData(
-            color: Theme.of(context).colorScheme.secondary,
-            percent: 100,
-            adjustedPercent: 100)
-      ];
-    }
-    return [
-      PieChartData(
-          color: Theme.of(context).colorScheme.primary,
-          percent: account * 100 / total,
-          adjustedPercent: (account * 100 / total).clamp(5, 95)),
-      PieChartData(
-          color: Theme.of(context).colorScheme.secondary,
-          percent: (investments * 100 / total),
-          adjustedPercent: (investments * 100 / total).clamp(5, 95))
-    ];
+    return PieChartData(chartData: [
+      InitialPieChartData(
+          color: Theme.of(context).colorScheme.primary, value: account),
+      InitialPieChartData(
+          color: Theme.of(context).colorScheme.secondary, value: investments)
+    ]);
   }
 
   @override
@@ -68,26 +50,35 @@ class Chart extends StatelessWidget {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment(
-                sin((-chartData.last.adjustedPercent * kPercentInRadians) / 2),
-                -cos((-chartData.last.adjustedPercent * kPercentInRadians) / 2),
+            if (chartData.data.lastOrNull != null)
+              Align(
+                alignment: Alignment(
+                  sin((-chartData.data.last.adjustedPercent *
+                          kPercentInRadians) /
+                      2),
+                  -cos((-chartData.data.last.adjustedPercent *
+                          kPercentInRadians) /
+                      2),
+                ),
+                child: ChartBadge(
+                  icon: FontAwesomeIcons.chartLine,
+                  text: 'Investments\nCHF $investments',
+                ),
               ),
-              child: ChartBadge(
-                icon: FontAwesomeIcons.chartLine,
-                text: 'Investments\nCHF $investments',
+            if (chartData.data.firstOrNull != null)
+              Align(
+                alignment: Alignment(
+                    sin(chartData.data.first.adjustedPercent *
+                        kPercentInRadians /
+                        2),
+                    -cos(chartData.data.first.adjustedPercent *
+                        kPercentInRadians /
+                        2)),
+                child: ChartBadge(
+                  icon: FontAwesomeIcons.coins,
+                  text: 'Account\nCHF $account',
+                ),
               ),
-            ),
-            Align(
-              alignment: Alignment(
-                  sin(chartData.first.adjustedPercent * kPercentInRadians / 2),
-                  -cos(
-                      chartData.first.adjustedPercent * kPercentInRadians / 2)),
-              child: ChartBadge(
-                icon: FontAwesomeIcons.coins,
-                text: 'Account\nCHF $account',
-              ),
-            ),
           ],
         ),
       ),
