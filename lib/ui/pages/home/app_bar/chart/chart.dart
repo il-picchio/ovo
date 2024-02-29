@@ -45,7 +45,6 @@ class Chart extends StatelessWidget {
                 padding: const EdgeInsets.all(47),
                 child: PieChart(
                   data: chartData,
-                  radius: width,
                   strokeWidth: _strokeWidth,
                 ),
               ),
