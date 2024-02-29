@@ -22,10 +22,11 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
             onProceed: () => setState(() => _step++),
             onProgress: (progress) => setState(() => _progress = progress));
       case 1:
-        return PortfolioOpenStep1(onProceed: () => setState(() {
-          _progress = 2;
-          step++;
-        }));
+        return PortfolioOpenStep1(
+            onProceed: () => setState(() {
+                  _step++;
+                  _progress = 2;
+                }));
       case 2:
         return PortfolioOpenStep2();
       default:
@@ -40,39 +41,57 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BrandColors>()!;
 
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Text('Open portfolio'),
-        actions: const [Icon(FontAwesomeIcons.xmark)],
-      ),
-      body: Background(
-        decorations: Decorations.investments(context),
-        child: SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: TweenAnimationBuilder(
-                  duration: const Duration(milliseconds: 500),
-                  tween: Tween<double>(begin: 0, end: _progress),
-                  builder: (context, value, child) => LinearProgressIndicator(
-                    value: (value) / 3,
-                    color: Colors.indigo.shade100,
-                    backgroundColor: Colors.grey.shade200,
+    return WillPopScope(
+      onWillPop: () {
+        if (_step == 0) {
+          return Future.value(true);
+        }
+        setState(() {
+          _step--;
+          _progress = _step.floorToDouble();
+        });
+        return Future.value(false);
+      },
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          automaticallyImplyLeading: _step > 0,
+          backgroundColor: Colors.transparent,
+          title: Text('Open portfolio'),
+          actions: [
+            IconButton(
+              icon: Icon(FontAwesomeIcons.xmark),
+              onPressed: () => Navigator.of(context).pop(),
+            )
+          ],
+        ),
+        body: Background(
+          decorations: Decorations.investments(context),
+          child: SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: TweenAnimationBuilder(
+                    duration: const Duration(milliseconds: 500),
+                    tween: Tween<double>(begin: 0, end: _progress),
+                    builder: (context, value, child) => LinearProgressIndicator(
+                      value: (value) / 3,
+                      color: Colors.indigo.shade100,
+                      backgroundColor: Colors.grey.shade200,
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 300),
-                  child: _getStep(context: context, step: _step),
+                Expanded(
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    child: _getStep(context: context, step: _step),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

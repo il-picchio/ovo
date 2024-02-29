@@ -5,8 +5,9 @@ import 'package:ovo/theme/elements/shadows.dart';
 class GradientButton extends StatelessWidget {
   final void Function() onTap;
   final Widget child;
+  final bool shadows;
 
-  const GradientButton({super.key, required this.onTap, required this.child});
+  const GradientButton({super.key, required this.onTap, required this.child, this.shadows = true});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class GradientButton extends StatelessWidget {
     return Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        boxShadow: theme.extension<Shadows>()!.shadows,
+        boxShadow: shadows ? theme.extension<Shadows>()!.shadows : [],
         borderRadius: BorderRadius.circular(200),
         gradient: theme.extension<BrandColors>()!.gradient,
       ),
