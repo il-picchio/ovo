@@ -3,26 +3,30 @@ part of 'pie_chart.dart';
 class PiePainter extends CustomPainter {
   final double strokeWidth;
   final Iterable<SinglePieChartData> paints;
+  final int gap;
 
-  PiePainter(
-      {required this.strokeWidth, Iterable<SinglePieChartData> paintData = const []})
-      : paints = paintData.where((element) => element.adjustedPercent > 0),
-        assert(paintData.where((element) => element.adjustedPercent > 0).isNotEmpty);
+  PiePainter({required this.strokeWidth, required PieChartData paintData})
+      : paints = paintData.data.where((element) => element.adjustedPercent > 0),
+        gap = paintData.gap,
+        assert(paintData.data
+            .where((element) => element.adjustedPercent > 0)
+            .isNotEmpty),
+        assert(paintData.gap >= kPieChartPadding);
 
   @override
   void paint(Canvas canvas, Size size) {
     final rect = Offset.zero & size;
 
-    final pieChartPadding = paints.length == 1 ? 0 : kPieChartPadding;
-    final pieChartPaddingInRadians = pieChartPadding * kPercentInRadians;
+    final pieChartPadding = paints.length == 1 ? 0 : gap;
+    final pieChartPaddingInRadians = gap * kPercentInRadians;
 
     // keep track of start angle for next stroke
     // starting from top
     double startAngle = -1.570796 + pieChartPaddingInRadians / 2;
 
-
     for (final data in paints) {
-      final angle = (data.adjustedPercent - pieChartPadding) * kPercentInRadians;
+      final angle =
+          (data.adjustedPercent - pieChartPadding) * kPercentInRadians;
 
       final paint = _createPaint(data);
 

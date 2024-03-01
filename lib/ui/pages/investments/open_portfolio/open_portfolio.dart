@@ -4,7 +4,7 @@ import 'package:ovo/theme/elements/colors.dart';
 import 'package:ovo/ui/common/background/background.dart';
 import 'package:ovo/ui/common/background/decorations.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/0/step_0.dart';
-import 'package:ovo/ui/pages/investments/open_portfolio/steps/0/step_2.dart';
+import 'package:ovo/ui/pages/investments/open_portfolio/steps/2/step_2.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/step_1.dart';
 
 class OpenPortfolioPage extends StatefulWidget {
@@ -28,7 +28,11 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
                   _progress = 2;
                 }));
       case 2:
-        return PortfolioOpenStep2();
+        return PortfolioOpenStep2(
+            onProceed: () => setState(() {
+                  _step++;
+                  _progress = 3;
+                }));
       default:
         throw ArgumentError.value(step, 'No Step found');
     }
@@ -41,16 +45,13 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BrandColors>()!;
 
-    return WillPopScope(
-      onWillPop: () {
-        if (_step == 0) {
-          return Future.value(true);
-        }
+    return PopScope(
+      canPop: _step == 0,
+      onPopInvoked: (canPop) {
         setState(() {
           _step--;
           _progress = _step.floorToDouble();
         });
-        return Future.value(false);
       },
       child: Scaffold(
         extendBodyBehindAppBar: true,
@@ -60,7 +61,7 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
           title: Text('Open portfolio'),
           actions: [
             IconButton(
-              icon: Icon(FontAwesomeIcons.xmark),
+              icon: const Icon(FontAwesomeIcons.xmark),
               onPressed: () => Navigator.of(context).pop(),
             )
           ],

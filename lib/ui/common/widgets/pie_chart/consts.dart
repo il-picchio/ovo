@@ -5,11 +5,3 @@ const kPercentInRadians = 0.062831853071796;
 // this is the gap between strokes in percent
 // minimum must be 4 due to the extra space taken by StrokeCap.round
 const kPieChartPadding = 2;
-
-const kDoublePieChartPadding = 2 * kPieChartPadding;
-
-const kPieChartPaddingPercent = kPieChartPadding / 100;
-
-const kDoublePieChartPaddingPercent = 2 * kPieChartPaddingPercent;
-
-const kPieChartPaddingInRadians = kPieChartPadding * kPercentInRadians;

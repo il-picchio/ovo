@@ -24,30 +24,36 @@ class SinglePieChartData extends InitialPieChartData {
 }
 
 class PieChartData {
-  const PieChartData({required Iterable<InitialPieChartData> chartData})
-      : _baseData = chartData;
+  PieChartData({required Iterable<InitialPieChartData> chartData, this.gap = kPieChartPadding})
+      : data = _normalizeData(chartData, gap);
 
-  final Iterable<InitialPieChartData> _baseData;
+  final Iterable<SinglePieChartData> data;
 
-  Iterable<SinglePieChartData> get data {
-    final total = _baseData.fold(
+  final int gap;
+
+  static Iterable<SinglePieChartData> _normalizeData(Iterable<InitialPieChartData> baseData, int gap) {
+    final total = baseData.fold(
         0.0, (previousValue, element) => previousValue + element.value);
+
+    final doublePieChartPadding = 2 * gap;
+    final doublePieChartPaddingPercent = doublePieChartPadding / 100;
+
     if (total <= 0.0) {
       return [];
     }
 
-    final compensation = _baseData.fold(0.0,
-        (value, element) => value += max(kDoublePieChartPaddingPercent - element.value / total, 0));
+    final compensation = baseData.fold(0.0,
+        (value, element) => value += max(doublePieChartPaddingPercent - element.value / total, 0));
 
     final compensationFactor = 1 - compensation;
 
-    return _baseData.map((e) {
+    return baseData.map((e) {
       final percent = (e.value / total) * 100;
       return SinglePieChartData(
           color: e.color,
           value: e.value,
           percent: percent,
-          adjustedPercent: max(percent * compensationFactor, kDoublePieChartPadding.toDouble()));
+          adjustedPercent: max(percent * compensationFactor, doublePieChartPadding.toDouble()));
     });
   }
 }

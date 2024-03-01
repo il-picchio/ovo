@@ -31,55 +31,51 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width - _strokeWidth;
     final chartData = _normalizeData(context);
     return Padding(
       padding: const EdgeInsets.all(0),
-      child: AspectRatio(
-        aspectRatio: 1,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Positioned.fill(
-              child: Padding(
-                padding: const EdgeInsets.all(47),
-                child: PieChart(
-                  data: chartData,
-                  strokeWidth: _strokeWidth,
-                ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Positioned.fill(
+            child: Padding(
+              padding: const EdgeInsets.all(47),
+              child: PieChart(
+                data: chartData,
+                strokeWidth: _strokeWidth,
               ),
             ),
-            if (chartData.data.lastOrNull != null)
-              Align(
-                alignment: Alignment(
-                  sin((-chartData.data.last.adjustedPercent *
-                          kPercentInRadians) /
-                      2),
-                  -cos((-chartData.data.last.adjustedPercent *
-                          kPercentInRadians) /
-                      2),
-                ),
-                child: ChartBadge(
-                  icon: FontAwesomeIcons.chartLine,
-                  text: 'Investments\nCHF $investments',
-                ),
+          ),
+          if (chartData.data.lastOrNull != null)
+            Align(
+              alignment: Alignment(
+                sin((-chartData.data.last.adjustedPercent *
+                        kPercentInRadians) /
+                    2),
+                -cos((-chartData.data.last.adjustedPercent *
+                        kPercentInRadians) /
+                    2),
               ),
-            if (chartData.data.firstOrNull != null)
-              Align(
-                alignment: Alignment(
-                    sin(chartData.data.first.adjustedPercent *
-                        kPercentInRadians /
-                        2),
-                    -cos(chartData.data.first.adjustedPercent *
-                        kPercentInRadians /
-                        2)),
-                child: ChartBadge(
-                  icon: FontAwesomeIcons.coins,
-                  text: 'Account\nCHF $account',
-                ),
+              child: ChartBadge(
+                icon: FontAwesomeIcons.chartLine,
+                text: 'Investments\nCHF $investments',
               ),
-          ],
-        ),
+            ),
+          if (chartData.data.firstOrNull != null)
+            Align(
+              alignment: Alignment(
+                  sin(chartData.data.first.adjustedPercent *
+                      kPercentInRadians /
+                      2),
+                  -cos(chartData.data.first.adjustedPercent *
+                      kPercentInRadians /
+                      2)),
+              child: ChartBadge(
+                icon: FontAwesomeIcons.coins,
+                text: 'Account\nCHF $account',
+              ),
+            ),
+        ],
       ),
     );
   }

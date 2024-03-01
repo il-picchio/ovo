@@ -25,10 +25,13 @@ class PieChart extends StatelessWidget {
   @override
   Widget build(context) {
     if (data.data.any((element) => element.percent > 0)) {
-      return CustomPaint(
-        painter: PiePainter(strokeWidth: strokeWidth, paintData: data.data),
-        size: Size.infinite,
-        child: child,
+      return AspectRatio(
+        aspectRatio: 1,
+        child: CustomPaint(
+          painter: PiePainter(strokeWidth: strokeWidth, paintData: data),
+          size: Size.infinite,
+          child: child,
+        ),
       );
     }
     return const SizedBox();
