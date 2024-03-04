@@ -30,7 +30,7 @@ class PieChart extends StatelessWidget {
         child: CustomPaint(
           painter: PiePainter(strokeWidth: strokeWidth, paintData: data),
           size: Size.infinite,
-          child: child,
+          child: Center(child: child),
         ),
       );
     }

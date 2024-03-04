@@ -4,8 +4,10 @@ import 'package:ovo/theme/elements/colors.dart';
 import 'package:ovo/ui/common/background/background.dart';
 import 'package:ovo/ui/common/background/decorations.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/0/step_0.dart';
+import 'package:ovo/ui/pages/investments/open_portfolio/steps/2/investment_card.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/2/step_2.dart';
-import 'package:ovo/ui/pages/investments/open_portfolio/steps/step_1.dart';
+import 'package:ovo/ui/pages/investments/open_portfolio/steps/1/step_1.dart';
+import 'package:ovo/ui/pages/investments/open_portfolio/steps/3/step_3.dart';
 
 class OpenPortfolioPage extends StatefulWidget {
   const OpenPortfolioPage({super.key});
@@ -15,6 +17,8 @@ class OpenPortfolioPage extends StatefulWidget {
 }
 
 class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
+  InvestmentCard? _investment;
+
   _getStep({required BuildContext context, required int step}) {
     switch (step) {
       case 0:
@@ -28,11 +32,19 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
                   _progress = 2;
                 }));
       case 2:
-        return PortfolioOpenStep2(
-            onProceed: () => setState(() {
-                  _step++;
-                  _progress = 3;
-                }));
+        return PortfolioOpenStep2(onProceed: (investment) {
+          print(investment);
+          _investment = investment;
+          setState(() {
+            _step++;
+            _progress = 3;
+          });
+        });
+      case 3:
+        print(_investment);
+        return PortfolioOpenStep3(
+          investmentCard: _investment!,
+        );
       default:
         throw ArgumentError.value(step, 'No Step found');
     }

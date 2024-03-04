@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ovo/theme/elements/colors.dart';
@@ -13,7 +14,10 @@ final ovoLightTheme = ThemeData(
       secondary: _kSecondaryColor,
       tertiary: _kTertiaryColor,
       negativeAmounts: _kSecondaryColor,
-      positiveAmounts: Colors.green.shade200
+      positiveAmounts: Colors.green.shade200,
+      stocks: _kStocksColor,
+      bonds: _kBondsColor,
+      crypto: _kCryptoColor
     ),
     Shadows(shadows: _kShadows)
   ],
