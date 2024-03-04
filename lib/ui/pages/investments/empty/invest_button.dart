@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ovo/core/routes/routes.dart';
 import 'package:ovo/ui/common/widgets/gradient_button.dart';
 
 class InvestButton extends StatelessWidget {
@@ -10,7 +11,7 @@ class InvestButton extends StatelessWidget {
     final theme = Theme.of(context);
 
     return GradientButton(
-      onTap: () => Navigator.pushNamed(context, '/open-portfolio'),
+      onTap: () => Navigator.pushNamed(context, Routes.kyc),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

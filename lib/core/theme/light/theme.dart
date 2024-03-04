@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ovo/theme/elements/colors.dart';
-import 'package:ovo/theme/elements/shadows.dart';
+import 'package:ovo/core/theme/elements/colors.dart';
+import 'package:ovo/core/theme/elements/shadows.dart';
 
 part 'shadows.dart';
 part 'colors.dart';

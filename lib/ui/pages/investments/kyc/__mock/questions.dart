@@ -1,4 +1,4 @@
-import 'package:ovo/ui/pages/investments/open_portfolio/steps/0/models/question.dart';
+import 'package:ovo/ui/pages/investments/kyc/models/question.dart';
 
 const questions = [
   Question(

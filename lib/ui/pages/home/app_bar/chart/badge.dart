@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ovo/theme/elements/colors.dart';
+import 'package:ovo/core/theme/elements/colors.dart';
 
 class ChartBadge extends StatelessWidget {
   final IconData icon;

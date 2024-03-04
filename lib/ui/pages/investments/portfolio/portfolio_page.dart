@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ovo/theme/elements/colors.dart';
+import 'package:ovo/core/theme/elements/colors.dart';
 import 'package:ovo/ui/pages/investments/portfolio/chart/chart.dart';
 import 'package:ovo/ui/pages/investments/portfolio/portfolio_element.dart';
 import 'package:ovo/ui/pages/investments/portfolio/time_horizons/time_horizons.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ovo/ui/pages/investments/empty/invest_button.dart';
 
 class EmptyPage extends StatelessWidget {
@@ -15,16 +14,14 @@ class EmptyPage extends StatelessWidget {
           'Investments',
           style: theme.textTheme.headlineSmall,
         ),
-        SizedBox(
+        const SizedBox(
           height: 60,
         ),
         Text(
           'Motivation text',
           style: theme.textTheme.bodyMedium,
         ),
-        TextButton(
-            onPressed: () {},
-            child: Text('Understand more')),
+        TextButton(onPressed: () {}, child: Text('Understand more')),
         SizedBox(
           height: 50,
         ),

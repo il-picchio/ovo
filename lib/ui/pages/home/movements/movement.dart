@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ovo/models/movement.dart';
-import 'package:ovo/theme/elements/colors.dart';
+import 'package:ovo/core/theme/elements/colors.dart';
 import 'package:ovo/ui/common/widgets/list_element_tile.dart';
 import 'package:ovo/ui/pages/home/movements/movement_details.dart';
 

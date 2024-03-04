@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ovo/theme/elements/colors.dart';
+import 'package:ovo/core/theme/elements/colors.dart';
 import 'package:ovo/ui/common/background/background.dart';
 import 'package:ovo/ui/common/background/decorations.dart';
-import 'package:ovo/ui/pages/investments/open_portfolio/steps/0/step_0.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/2/investment_card.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/2/step_2.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/1/step_1.dart';
@@ -22,16 +21,12 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
   _getStep({required BuildContext context, required int step}) {
     switch (step) {
       case 0:
-        return PortfolioOpenStep0(
-            onProceed: () => setState(() => _step++),
-            onProgress: (progress) => setState(() => _progress = progress));
-      case 1:
         return PortfolioOpenStep1(
             onProceed: () => setState(() {
                   _step++;
                   _progress = 2;
                 }));
-      case 2:
+      case 1:
         return PortfolioOpenStep2(onProceed: (investment) {
           print(investment);
           _investment = investment;
@@ -40,7 +35,7 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
             _progress = 3;
           });
         });
-      case 3:
+      case 2:
         print(_investment);
         return PortfolioOpenStep3(
           investmentCard: _investment!,

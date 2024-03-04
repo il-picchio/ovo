@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ovo/theme/elements/shadows.dart';
+import 'package:ovo/core/theme/elements/shadows.dart';
 
 class CreditCardAction extends StatelessWidget {
   final IconData icon;

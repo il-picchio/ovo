@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ovo/theme/elements/colors.dart';
+import 'package:ovo/core/theme/elements/colors.dart';
 import 'package:ovo/ui/common/widgets/pie_chart/pie_chart.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/2/investment_card.dart';
 
