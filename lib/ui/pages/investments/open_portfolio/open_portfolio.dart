@@ -24,19 +24,17 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
         return PortfolioOpenStep1(
             onProceed: () => setState(() {
                   _step++;
-                  _progress = 2;
+                  _progress = 1;
                 }));
       case 1:
         return PortfolioOpenStep2(onProceed: (investment) {
-          print(investment);
           _investment = investment;
           setState(() {
             _step++;
-            _progress = 3;
+            _progress = 2;
           });
         });
       case 2:
-        print(_investment);
         return PortfolioOpenStep3(
           investmentCard: _investment!,
         );

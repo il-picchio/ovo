@@ -14,8 +14,6 @@ class QuestionContainer extends StatelessWidget {
     final cubit = context.read<QuestionsCubit>();
     final state = context.watch<QuestionsCubit>().state;
 
-    print(state.step);
-
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 500),
       switchInCurve: Curves.decelerate,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ovo/core/theme/elements/colors.dart';
+import 'package:ovo/ui/common/widgets/gradient_button.dart';
 
 class ChartBadge extends StatelessWidget {
   final IconData icon;
@@ -11,22 +11,21 @@ class ChartBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Tooltip(
       message: text,
-      child: Container(
+      child: SizedBox(
         width: size,
         height: size,
-        decoration: BoxDecoration(
-          border: Border.all(color: theme.colorScheme.surfaceTint),
-          shape: BoxShape.circle,
-          gradient: theme.extension<BrandColors>()!.gradient,
-        ),
-        child: Icon(
-          icon,
-          size: (size - 25),
-          color: Colors.white,
+        child: GradientButton(
+          padding: const EdgeInsets.all(0.0),
+          onTap: (){},
+          child: Center(
+            child: Icon(
+              icon,
+              size: (size - 25),
+              color: Colors.white,
+            ),
+          ),
         ),
       ),
     );

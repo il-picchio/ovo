@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ovo/core/routes/routes.dart';
@@ -24,6 +23,7 @@ class QuestionsCubit extends Cubit<QuestionsState> {
 
     if (state.step == maxSteps) {
       Navigator.of(context).pushReplacementNamed(Routes.openPortfolio);
+      return;
     }
 
     emit(state.copyWith(points: updatedPoints, step: state.step + 1));

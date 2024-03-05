@@ -6,7 +6,7 @@ import 'package:ovo/ui/common/widgets/pie_chart/pie_chart.dart';
 import 'package:ovo/ui/pages/home/app_bar/chart/badge.dart';
 
 class Chart extends StatelessWidget {
-  static const double _strokeWidth = 10;
+  static const double _strokeWidth = 6;
 
   final double investments;
   final double account;

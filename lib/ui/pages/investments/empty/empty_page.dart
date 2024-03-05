@@ -10,10 +10,6 @@ class EmptyPage extends StatelessWidget {
 
     return Column(
       children: [
-        Text(
-          'Investments',
-          style: theme.textTheme.headlineSmall,
-        ),
         const SizedBox(
           height: 60,
         ),

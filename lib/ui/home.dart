@@ -43,26 +43,28 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBodyBehindAppBar: true,
-        extendBody: true,
-        body: PageView(
-          clipBehavior: Clip.none,
-          controller: _pageController,
-          children: const [
-            PaymentsPage(),
-            CardPage(),
-            HomePage(),
-            InvestmentsPage(),
-            Text('test3'),
-          ],
-        ),
-        bottomNavigationBar: OvoNavigationBar(
-            currentIndex: _index,
-            onTap: (val) {
-              setState(() => _index = val);
-              _pageController.animateToPage(val,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut);
-            }));
+      extendBodyBehindAppBar: true,
+      extendBody: true,
+      body: PageView(
+        clipBehavior: Clip.none,
+        controller: _pageController,
+        children: const [
+          PaymentsPage(),
+          CardPage(),
+          HomePage(),
+          InvestmentsPage(),
+          Text('test3'),
+        ],
+      ),
+      bottomNavigationBar: OvoNavigationBar(
+        currentIndex: _index,
+        onTap: (val) {
+          setState(() => _index = val);
+          _pageController.animateToPage(val,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut);
+        },
+      ),
+    );
   }
 }

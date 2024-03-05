@@ -1,11 +1,12 @@
 part of 'questions_cubit.dart';
 
+@immutable
 class QuestionsState {
-  QuestionsState({required this.points, required this.step});
+  const QuestionsState({required this.points, required this.step});
 
   final Map<int, int> points;
 
-  int step;
+  final int step;
 
   copyWith({ Map<int, int>? points, int? step }) {
     return QuestionsState(
@@ -14,5 +15,5 @@ class QuestionsState {
     );
   }
 
-  factory QuestionsState.initial() => QuestionsState(points: {}, step: 0);
+  factory QuestionsState.initial() => const QuestionsState(points: {}, step: 0);
 }

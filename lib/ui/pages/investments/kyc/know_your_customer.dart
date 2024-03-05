@@ -12,33 +12,40 @@ class KnowYourCustomer extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Background(
-      decorations: Decorations.investments(context),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          Text(
-            'Risk assessment',
-            style: theme.textTheme.bodyLarge,
-          ),
-          Text(
-            'Answer honestly',
-            style: theme.textTheme.bodySmall,
-          ),
-          Expanded(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                child: BlocProvider(
-                  create: (context) => QuestionsCubit(context: context),
-                  child: const QuestionContainer(),
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Text('Know your customer'),
+      ),
+      body: Background(
+        decorations: Decorations.investments(context),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 30,
+            ),
+            Text(
+              'Risk assessment',
+              style: theme.textTheme.bodyLarge,
+            ),
+            Text(
+              'Answer honestly',
+              style: theme.textTheme.bodySmall,
+            ),
+            Expanded(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                  child: BlocProvider(
+                    create: (context) => QuestionsCubit(context: context),
+                    child: const QuestionContainer(),
+                  ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

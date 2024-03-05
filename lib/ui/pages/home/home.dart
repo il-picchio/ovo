@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _controller = ScrollController();
     _controller.addListener(() {
       setState(() => _animationController.value =
-          (-(0.009 * _controller.offset) + 2).clamp(0, 1));
+          (1 - _controller.offset / 60).clamp(0, 1));
     });
     super.initState();
   }
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           backgroundColor: Colors.white,
           pinned: true,
           expandedHeight: 450,
-          collapsedHeight: 140,
+          collapsedHeight: 150,
           flexibleSpace: HomeAppBar(
             animationControllerValue: _animationController.value,
           ),

@@ -6,8 +6,15 @@ class GradientButton extends StatelessWidget {
   final void Function() onTap;
   final Widget child;
   final bool shadows;
+  final EdgeInsets padding;
 
-  const GradientButton({super.key, required this.onTap, required this.child, this.shadows = true});
+  const GradientButton(
+      {super.key,
+      required this.onTap,
+      required this.child,
+      this.shadows = true,
+      this.padding =
+          const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0)});
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +33,7 @@ class GradientButton extends StatelessWidget {
         child: InkWell(
           onTap: () => onTap(),
           child: Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+            padding: padding,
             child: child,
           ),
         ),

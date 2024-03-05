@@ -13,58 +13,65 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Background(
-      decorations: Decorations.home(context),
-      child: Column(
-        children: [
-          Text(
-            'Patrimonio totale',
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 20.0),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width *
-                        (1 - animationControllerValue / 2),
-                    child: Text(
-                      'CHF 2\'000\'000.54',
-                      style: Theme.of(context).textTheme.headlineMedium,
-                      textAlign: TextAlign.center,
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Text('Patrimonio totale'),
+      ),
+      body: Background(
+        decorations: Decorations.home(context),
+        child: Column(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width *
+                          (1 - animationControllerValue / 2),
+                      child: Text(
+                        'CHF 2\'000\'000.54',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                  ),
-                  Opacity(
+                    Opacity(
                       opacity: animationControllerValue,
                       child: const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Chart(
-                          investments: 140000.54,
-                          account: 600000,
+                        child: AspectRatio(
+                          aspectRatio: 1,
+                          child: Chart(
+                            investments: 140000.54,
+                            account: 600000,
+                          ),
                         ),
-                      )),
-                ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          Container(
-            height: 30,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.shade400,
-                  blurRadius: 30,
-                ),
-              ],
-              color: Colors.white,
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(20.0),
-                  topRight: Radius.circular(20.0)),
-            ),
-          )
-        ],
+            Container(
+              height: 30,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade400,
+                    blurRadius: 30,
+                  ),
+                ],
+                color: Colors.white,
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0)),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
