@@ -5,7 +5,6 @@ import 'package:ovo/ui/common/background/background.dart';
 import 'package:ovo/ui/common/background/decorations.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/2/investment_card.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/2/step_2.dart';
-import 'package:ovo/ui/pages/investments/open_portfolio/steps/1/step_1.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/3/step_3.dart';
 
 class OpenPortfolioPage extends StatefulWidget {
@@ -21,12 +20,6 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
   _getStep({required BuildContext context, required int step}) {
     switch (step) {
       case 0:
-        return PortfolioOpenStep1(
-            onProceed: () => setState(() {
-                  _step++;
-                  _progress = 1;
-                }));
-      case 1:
         return PortfolioOpenStep2(onProceed: (investment) {
           _investment = investment;
           setState(() {
@@ -34,7 +27,7 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
             _progress = 2;
           });
         });
-      case 2:
+      case 1:
         return PortfolioOpenStep3(
           investmentCard: _investment!,
         );

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ovo/core/routes/routes.dart';
 import 'package:ovo/ui/common/widgets/gradient_button.dart';
 
-class PortfolioOpenStep1 extends StatelessWidget {
-  final void Function() onProceed;
-
-  const PortfolioOpenStep1({super.key, required this.onProceed});
+class QuestionsResult extends StatelessWidget {
+  const QuestionsResult({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +59,7 @@ class PortfolioOpenStep1 extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: GradientButton(
-                    onTap: () => onProceed(),
+                    onTap: () => Navigator.of(context).popAndPushNamed(Routes.openPortfolio),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [

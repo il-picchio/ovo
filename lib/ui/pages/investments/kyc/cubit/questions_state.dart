@@ -8,10 +8,12 @@ class QuestionsState {
 
   final int step;
 
+  final int maxSteps = 13;
+
   copyWith({ Map<int, int>? points, int? step }) {
     return QuestionsState(
       points: points ?? this.points, 
-      step: step ?? this.step
+      step: step ?? this.step,
     );
   }
 
