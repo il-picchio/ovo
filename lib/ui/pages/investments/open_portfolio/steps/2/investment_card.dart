@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ovo/core/theme/elements/colors.dart';
 import 'package:ovo/ui/common/widgets/pie_chart/pie_chart.dart';
-import 'package:ovo/ui/pages/investments/open_portfolio/models/investment_mix.dart';
+import 'package:ovo/ui/pages/investments/models/investment_mix/investment_mix.dart';
 
 class InvestmentCard extends StatelessWidget {
   final String title;

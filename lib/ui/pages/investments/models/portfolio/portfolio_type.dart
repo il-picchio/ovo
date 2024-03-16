@@ -1,0 +1,1 @@
+enum Portfolio { coservative, balanced, aggressive, max }
