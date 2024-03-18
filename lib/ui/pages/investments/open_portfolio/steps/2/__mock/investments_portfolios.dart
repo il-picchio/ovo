@@ -1,5 +1,5 @@
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/2/investment_card.dart';
-import 'package:ovo/ui/pages/investments/open_portfolio/models/investment_mix.dart';
+import 'package:ovo/ui/pages/investments/models/investment_mix/investment_mix.dart';
 
 const portfolios = [
   InvestmentCard(
@@ -11,6 +11,7 @@ const portfolios = [
       stocks: 40, 
       bonds: 60, 
       crypto: 0,
+      commodities: 0
     ),
   ),
   InvestmentCard(
@@ -18,7 +19,7 @@ const portfolios = [
         description: 'An elegan way to grow your capitals with conscious risks',
         picture: 'swan',
         preferred: false,
-        investments: InvestmentMix(stocks: 60, bonds: 40, crypto: 0),
+        investments: InvestmentMix(stocks: 60, bonds: 40, crypto: 0, commodities: 0),
       ),
       InvestmentCard(
         title: 'Crocodile',
@@ -26,13 +27,13 @@ const portfolios = [
             'Silently grow your capital exploiting market opportunities',
         picture: 'crocodile',
         preferred: false,
-                investments: InvestmentMix(stocks: 80, bonds: 20, crypto: 0),
+                investments: InvestmentMix(stocks: 80, bonds: 20, crypto: 0, commodities: 0),
 
       ),
       InvestmentCard(
         title: 'Wild bird',
         description: 'The maximum for the maximum',
-        investments: InvestmentMix(stocks: 90, bonds: 0, crypto: 10),
+        investments: InvestmentMix(stocks: 90, bonds: 0, crypto: 10, commodities: 0),
         picture: 'bird',
         preferred: true,
       )
