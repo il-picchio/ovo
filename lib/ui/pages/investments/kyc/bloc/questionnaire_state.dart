@@ -12,8 +12,9 @@ class QuestionnaireLoaderState extends QuestionnaireState {
 class QuestionnaireLoadedState extends QuestionnaireState {
   final Question question;
   final int idx;
+  final int totalQuestions;
 
-  const QuestionnaireLoadedState({ required this.question, required this.idx }) : super();
+  const QuestionnaireLoadedState({ required this.question, required this.idx, required this.totalQuestions }) : super();
   
   @override
   List<Object?> get props => [question];

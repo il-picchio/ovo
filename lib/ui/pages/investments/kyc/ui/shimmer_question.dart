@@ -6,9 +6,6 @@ class ShimmerQuestion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    print('shimmer');
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -35,7 +32,7 @@ class ShimmerQuestion extends StatelessWidget {
               highlightColor: Colors.grey.shade200,
               child: Container(
                 padding: const EdgeInsets.all(15.0),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),

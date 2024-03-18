@@ -29,7 +29,8 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
   Future<void> _loadQuestionnaire(Emitter<QuestionnaireState> emit) async {
     try {
       questions.addAll(await apiService.getQuestionnaire());
-      emit(QuestionnaireLoadedState(question: questions.first, idx: 0));
+      emit(QuestionnaireLoadedState(
+          question: questions.first, idx: 0, totalQuestions: questions.length));
     } catch (e) {
       print(e);
       emit(QuestionnaireErrorState(error: 'Test'));
@@ -45,7 +46,10 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
     final newIdx = event.idx + 1;
     print(newIdx);
     answerList.add(event.id);
-    emit(QuestionnaireLoadedState(question: questions[newIdx], idx: newIdx));
+    emit(QuestionnaireLoadedState(
+        question: questions[newIdx],
+        idx: newIdx,
+        totalQuestions: questions.length));
   }
 
   void _previousQuestion(Emitter<QuestionnaireState> emit,
@@ -57,6 +61,9 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
     }
     answerList.removeLast();
     final newIdx = event.idx - 1;
-    emit(QuestionnaireLoadedState(question: questions[newIdx], idx: newIdx));
+    emit(QuestionnaireLoadedState(
+        question: questions[newIdx],
+        idx: newIdx,
+        totalQuestions: questions.length));
   }
 }
