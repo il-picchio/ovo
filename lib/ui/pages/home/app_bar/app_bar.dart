@@ -5,10 +5,12 @@ import 'package:ovo/ui/pages/home/app_bar/chart/chart.dart';
 
 class HomeAppBar extends StatelessWidget {
   final double animationControllerValue;
+  final Widget child;
 
   const HomeAppBar({
     super.key,
     required this.animationControllerValue,
+    required this.child
   });
 
   @override
@@ -38,7 +40,8 @@ class HomeAppBar extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    Opacity(
+                    AnimatedOpacity(
+                      duration: Duration(milliseconds: 100),
                       opacity: animationControllerValue,
                       child: const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -56,7 +59,6 @@ class HomeAppBar extends StatelessWidget {
               ),
             ),
             Container(
-              height: 30,
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
@@ -69,6 +71,7 @@ class HomeAppBar extends StatelessWidget {
                     topLeft: Radius.circular(20.0),
                     topRight: Radius.circular(20.0)),
               ),
+              child: Center(child: child),
             )
           ],
         ),

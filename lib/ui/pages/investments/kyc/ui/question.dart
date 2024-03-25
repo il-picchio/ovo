@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ovo/core/theme/elements/colors.dart';
 import 'package:ovo/ui/pages/investments/kyc/bloc/questionnaire_bloc.dart';
 import 'package:ovo/ui/pages/investments/kyc/models/question/question.dart';
-import 'package:shimmer/shimmer.dart';
 
 class QuestionWidget extends StatelessWidget {
   final Question question;
