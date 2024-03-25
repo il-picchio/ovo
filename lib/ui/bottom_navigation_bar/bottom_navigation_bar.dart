@@ -46,12 +46,10 @@ class OvoNavigationBar extends StatelessWidget {
               FontAwesomeIcons.chartLine,
               Icons.account_circle_rounded
             ].mapIndexed((idx, e) {
-              if (idx != currentIndex) {
-                return BottomNavigationBarItem(icon: Icon(e), label: '');
-              }
               return BottomNavigationBarItem(
                 label: '',
-                icon: ShaderMask(
+                icon: Icon(e),
+                activeIcon: ShaderMask(
                   blendMode: BlendMode.srcIn,
                   shaderCallback: (Rect bounds) {
                     return ui.Gradient.linear(

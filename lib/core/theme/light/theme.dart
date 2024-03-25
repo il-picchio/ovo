@@ -1,4 +1,5 @@
-import 'package:flutter/gestures.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ovo/core/theme/elements/colors.dart';
@@ -8,6 +9,8 @@ part 'shadows.dart';
 part 'colors.dart';
 
 final ovoLightTheme = ThemeData(
+  splashColor: Platform.isIOS ? Colors.transparent : null,
+  highlightColor: Platform.isIOS ? Colors.transparent : null,
   extensions: <ThemeExtension<dynamic>>[
     BrandColors(
       primary: _kPrimaryColor,
