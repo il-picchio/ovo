@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ovo/core/theme/elements/colors.dart';
-import 'package:ovo/ui/common/widgets/gradient_button.dart';
+import 'package:ovo/ui/common/widgets/button/button.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/2/investment_card.dart';
 import 'package:ovo/ui/pages/investments/open_portfolio/steps/2/suboptimal_warning_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -70,8 +70,9 @@ class _PortfolioOpenStep2State extends State<PortfolioOpenStep2> {
         const SizedBox(
           height: 30,
         ),
-        GradientButton(
-          onTap: () async {
+        AdaptiveButton(
+          type: ButtonType.elevated,
+          onPressed: () async {
             final bottomSheetResult = await showModalBottomSheet(
                 context: context,
                 useSafeArea: true,

@@ -28,3 +28,8 @@ class QuestionnaireErrorState extends QuestionnaireState {
   @override
   List<Object?> get props => [error];
 }
+
+class QuestionnaireCompletedState extends QuestionnaireState {
+  @override
+  List<Object?> get props => [];
+}

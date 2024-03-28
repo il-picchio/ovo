@@ -40,11 +40,10 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
   void _nextQuestion(
       Emitter<QuestionnaireState> emit, QuestionnaireNextQuestionEvent event) {
     if (event.idx == questions.length - 1) {
-      print('questionnaire completed $answerList');
+      emit(QuestionnaireCompletedState());
       return;
     }
     final newIdx = event.idx + 1;
-    print(newIdx);
     answerList.add(event.id);
     emit(QuestionnaireLoadedState(
         question: questions[newIdx],

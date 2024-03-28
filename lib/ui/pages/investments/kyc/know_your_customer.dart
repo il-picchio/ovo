@@ -6,6 +6,7 @@ import 'package:ovo/ui/common/background/decorations.dart';
 import 'package:ovo/ui/pages/investments/kyc/bloc/questionnaire_bloc.dart';
 import 'package:ovo/ui/pages/investments/kyc/services/questionnaire_api_service.dart';
 import 'package:ovo/ui/pages/investments/kyc/ui/question_container.dart';
+import 'package:ovo/ui/pages/investments/kyc/ui/questions_result.dart';
 
 class KnowYourCustomer extends StatelessWidget {
   const KnowYourCustomer({super.key});
@@ -34,36 +35,23 @@ class KnowYourCustomer extends StatelessWidget {
           decorations: Decorations.investments(context),
           child: BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
             builder: (context, state) {
-              double progress = 0.0;
-              if (state is QuestionnaireLoadedState) {
-                progress = state.idx / (state.totalQuestions - 1);
-              }
               return Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: TweenAnimationBuilder<double>(
-                      duration: const Duration(milliseconds: 250),
-                      curve: Curves.easeInOut,
-                      tween: Tween<double>(begin: 0, end: progress),
-                      builder: (context, value, _) => LinearProgressIndicator(
-                        value: value,
-                        color: Colors.indigo.shade100,
-                        backgroundColor: Colors.grey.shade200,
-                      ),
-                    ),
-                  ),
                   if (state is QuestionnaireLoaderState)
                     QuestionContainer(
                       question: null,
                       idx: 0,
+                      progress: 0,
                     )
                   else if (state is QuestionnaireLoadedState)
                     QuestionContainer(
                       question: state.question,
                       idx: state.idx,
-                    ),
+                      progress: state.idx / state.totalQuestions,
+                    )
+                  else if (state is QuestionnaireCompletedState)
+                    const QuestionsResult(),
                 ],
               );
             },

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class BrandColors extends ThemeExtension<BrandColors> {
   final Color primary;
   final Color secondary;
+  final Color secondaryTextColor;
   final Color tertiary;
   final Color stocks;
   final Color bonds;
@@ -15,6 +16,7 @@ class BrandColors extends ThemeExtension<BrandColors> {
   BrandColors(
       {required this.primary,
       required this.secondary,
+      required this.secondaryTextColor,
       required this.tertiary,
       required this.negativeAmounts,
       required this.positiveAmounts,
@@ -30,6 +32,7 @@ class BrandColors extends ThemeExtension<BrandColors> {
   ThemeExtension<BrandColors> copyWith(
       {Color? primary,
       Color? secondary,
+      Color? secondaryTextColor,
       Color? tertiary,
       Color? stocks,
       Color? bonds,
@@ -39,6 +42,7 @@ class BrandColors extends ThemeExtension<BrandColors> {
     return BrandColors(
         primary: primary ?? this.primary,
         secondary: secondary ?? this.secondary,
+        secondaryTextColor: secondaryTextColor ?? this.secondaryTextColor,
         tertiary: tertiary ?? this.tertiary,
         stocks: stocks ?? this.stocks,
         bonds: bonds ?? this.bonds,
@@ -56,6 +60,9 @@ class BrandColors extends ThemeExtension<BrandColors> {
     return BrandColors(
         primary: Color.lerp(primary, other.primary, t) ?? primary,
         secondary: Color.lerp(secondary, other.secondary, t) ?? secondary,
+        secondaryTextColor:
+            Color.lerp(secondaryTextColor, other.secondaryTextColor, t) ??
+                secondaryTextColor,
         tertiary: Color.lerp(tertiary, other.tertiary, t) ?? tertiary,
         stocks: Color.lerp(stocks, other.stocks, t) ?? stocks,
         bonds: Color.lerp(bonds, other.bonds, t) ?? bonds,

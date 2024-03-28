@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ovo/ui/common/widgets/gradient_button.dart';
+import 'package:ovo/ui/common/widgets/button/button.dart';
 
 class SuboptimalInvestmentPage extends StatelessWidget {
   const SuboptimalInvestmentPage({super.key});
@@ -31,9 +31,9 @@ class SuboptimalInvestmentPage extends StatelessWidget {
               ),
             ),
           ),
-          GradientButton(onTap: () => Navigator.of(context).pop(true), child: Text('Ok')),
+          AdaptiveButton(type: ButtonType.elevated, onPressed: () => Navigator.of(context).pop(true), child: Text('Ok')),
           SizedBox(height: 15,),
-          TextButton(onPressed: () => Navigator.of(context).pop(false), child: Text('Cancel'))
+          AdaptiveButton(type: ButtonType.text, onPressed: () => Navigator.of(context).pop(false), child: Text('Cancel'))
         ],
       ),
     );

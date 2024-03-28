@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ovo/ui/common/widgets/gradient_button.dart';
+import 'package:ovo/ui/common/widgets/button/button.dart';
 
 class ChartBadge extends StatelessWidget {
   final IconData icon;
@@ -14,16 +14,25 @@ class ChartBadge extends StatelessWidget {
     return Tooltip(
       message: text,
       child: SizedBox(
-        width: size,
-        height: size,
-        child: GradientButton(
-          padding: const EdgeInsets.all(0.0),
-          onTap: (){},
-          child: Center(
-            child: Icon(
-              icon,
-              size: (size - 25),
-              color: Colors.white,
+        width: 40,
+        height: 40,
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: ButtonTheme(
+            padding: EdgeInsets.all(0.0),
+            shape: CircleBorder(),
+            height: 40,
+            minWidth: 20,
+            layoutBehavior: ButtonBarLayoutBehavior.constrained,
+            child: AdaptiveButton(
+              type: ButtonType.elevated,
+              minSize: 0,
+              onPressed: (){},
+              child: Icon(
+                icon,
+                size: (size - 25),
+                color: Colors.white,
+              ),
             ),
           ),
         ),

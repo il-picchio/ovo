@@ -6,17 +6,33 @@ import 'package:ovo/ui/pages/investments/kyc/ui/shimmer_question.dart';
 class QuestionContainer extends StatelessWidget {
   final Question? question;
   final int idx;
+  final double progress;
 
   const QuestionContainer(
-      {super.key, required this.question, required this.idx});
+      {super.key,
+      required this.question,
+      required this.idx,
+      required this.progress});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return Expanded(
       child: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TweenAnimationBuilder<double>(
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeInOut,
+              tween: Tween<double>(begin: 0, end: progress),
+              builder: (context, value, _) => LinearProgressIndicator(
+                value: value,
+                color: Colors.indigo.shade100,
+                backgroundColor: Colors.grey.shade200,
+              ),
+            ),
+          ),
           const SizedBox(
             height: 30,
           ),
