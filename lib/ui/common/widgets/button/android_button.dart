@@ -48,7 +48,6 @@ class AndroidButton extends StatelessWidget {
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ).merge(
                   ButtonStyle(
-                    minimumSize: MaterialStatePropertyAll(Size.fromRadius(0.0)),
                     overlayColor: MaterialStateProperty.resolveWith(
                       (states) {
                         return states.contains(MaterialState.pressed)
