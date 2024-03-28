@@ -28,7 +28,7 @@ class AdaptiveButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return !Platform.isIOS
+    return Platform.isIOS
         ? IOSButton(
             type: type,
             padding: internalPadding,
