@@ -4,12 +4,17 @@ class AndroidButton extends StatelessWidget {
   final ButtonType type;
   final void Function() onPressed;
   final Widget child;
+  final EdgeInsets? externalPadding;
+  final EdgeInsets? internalPadding;
 
   const AndroidButton(
       {super.key,
       required this.type,
       required this.onPressed,
-      required this.child});
+      required this.child,
+      this.internalPadding,
+      this.externalPadding
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,7 @@ class AndroidButton extends StatelessWidget {
       case ButtonType.elevated:
         return Padding(
           // ElevatedButton has default 5 padding on top and bottom
-          padding: const EdgeInsets.symmetric(
+          padding: externalPadding ?? const EdgeInsets.symmetric(
             vertical: 5,
           ),
           // DecoratedBox contains our linear gradient
@@ -35,9 +40,10 @@ class AndroidButton extends StatelessWidget {
                 onPressed: onPressed,
                 // Duplicate the default styling of an ElevatedButton
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size.fromRadius(0.0),
+                  //minimumSize: Size.fromRadius(0.0),
                   // Enables us to see the BoxDecoration behind the ElevatedButton
                   backgroundColor: Colors.transparent,
+                  padding: internalPadding,
                   // Fits the Ink in the BoxDecoration
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ).merge(

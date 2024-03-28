@@ -14,20 +14,32 @@ class AdaptiveButton extends StatelessWidget {
   final ButtonType type;
   final Widget child;
   final void Function() onPressed;
-  final double? minSize;
+  final EdgeInsets? externalPadding;
+  final EdgeInsets? internalPadding;
 
-  const AdaptiveButton(
-      {super.key,
-      required this.type,
-      required this.onPressed,
-      required this.child,
-      this.minSize});
+  const AdaptiveButton({
+    super.key,
+    required this.type,
+    required this.onPressed,
+    required this.child,
+    this.externalPadding,
+    this.internalPadding,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Platform.isIOS
+    return !Platform.isIOS
         ? IOSButton(
-            type: type, onPressed: onPressed, minSize: minSize, child: child)
-        : AndroidButton(type: type, onPressed: onPressed, child: child);
+            type: type,
+            padding: internalPadding,
+            onPressed: onPressed,
+            child: child)
+        : AndroidButton(
+            type: type,
+            onPressed: onPressed,
+            internalPadding: internalPadding,
+            externalPadding: externalPadding,
+            child: child,
+          );
   }
 }

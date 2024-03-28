@@ -14,26 +14,17 @@ class ChartBadge extends StatelessWidget {
     return Tooltip(
       message: text,
       child: SizedBox(
-        width: 40,
-        height: 40,
-        child: AspectRatio(
-          aspectRatio: 1,
-          child: ButtonTheme(
-            padding: EdgeInsets.all(0.0),
-            shape: CircleBorder(),
-            height: 40,
-            minWidth: 20,
-            layoutBehavior: ButtonBarLayoutBehavior.constrained,
-            child: AdaptiveButton(
-              type: ButtonType.elevated,
-              minSize: 0,
-              onPressed: (){},
-              child: Icon(
-                icon,
-                size: (size - 25),
-                color: Colors.white,
-              ),
-            ),
+        width: 50,
+        height: 50,
+        child: AdaptiveButton(
+          type: ButtonType.elevated,
+          internalPadding: EdgeInsets.all(0.0),
+          externalPadding: EdgeInsets.all(0.0),
+          onPressed: (){},
+          child: Icon(
+            icon,
+            size: (size - 25),
+            color: Colors.white,
           ),
         ),
       ),

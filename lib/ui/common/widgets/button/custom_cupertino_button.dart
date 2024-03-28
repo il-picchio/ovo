@@ -38,6 +38,7 @@ class CustomCupertinoButton extends StatefulWidget {
     this.borderRadius = const BorderRadius.all(Radius.circular(8.0)),
     this.alignment = Alignment.center,
     this.onPressed,
+    this.backgroundPadding = _kBackgroundButtonPadding
   }) : assert(pressedOpacity == null || (pressedOpacity >= 0.0 && pressedOpacity <= 1.0));
 
   /// The widget below this widget in the tree.
@@ -90,6 +91,8 @@ class CustomCupertinoButton extends StatefulWidget {
   ///
   /// Always defaults to [Alignment.center].
   final AlignmentGeometry alignment;
+
+  final EdgeInsets backgroundPadding;
 
   /// Whether the button is enabled or disabled. Buttons are disabled by default. To
   /// enable a button, set its [onPressed] property to a non-null value.
@@ -218,7 +221,7 @@ class _CustomCupertinoButtonState extends State<CustomCupertinoButton> with Sing
                   color: widget.onPressed == null ? widget.disabledColor : null
                 ),
                 child: Padding(
-                  padding:_kBackgroundButtonPadding,
+                  padding: widget.backgroundPadding,
                   child: Align(
                     alignment: widget.alignment,
                     widthFactor: 1.0,

@@ -4,24 +4,23 @@ class IOSButton extends StatelessWidget {
   final ButtonType type;
   final void Function()? onPressed;
   final Widget child;
-  final double? minSize;
+  final EdgeInsets? padding;
 
   const IOSButton(
       {super.key,
       required this.type,
       this.onPressed,
-      this.minSize,
+      this.padding,
       required this.child});
 
   @override
   Widget build(BuildContext context) {
-    print(minSize);
     switch (type) {
       case ButtonType.elevated:
         return CustomCupertinoButton(
           borderRadius: const BorderRadius.all(Radius.circular(200)),
           onPressed: onPressed,
-          minSize: minSize,
+          backgroundPadding: padding ?? _kBackgroundButtonPadding,
           child: child,
         );
       case ButtonType.outlined:
@@ -29,7 +28,6 @@ class IOSButton extends StatelessWidget {
         return CupertinoButton(
           borderRadius: const BorderRadius.all(Radius.circular(200)),
           onPressed: onPressed,
-          minSize: minSize,
           child: child,
         );
     }
