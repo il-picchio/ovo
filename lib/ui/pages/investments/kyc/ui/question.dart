@@ -1,8 +1,10 @@
 import 'package:collection/collection.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ovo/core/theme/elements/colors.dart';
 import 'package:ovo/ui/common/widgets/button/button.dart';
+import 'package:ovo/ui/common/widgets/list_tile.dart';
 import 'package:ovo/ui/pages/investments/kyc/bloc/questionnaire_bloc.dart';
 import 'package:ovo/ui/pages/investments/kyc/models/question/question.dart';
 
@@ -30,21 +32,20 @@ class QuestionWidget extends StatelessWidget {
           ),
         ),
         ...question.answers.mapIndexed(
-          (index, answer) => ListTile(
+          (index, answer) => AdaptiveListTile(
             onTap: () {
               bloc.add(QuestionnaireNextQuestionEvent(idx: idx, id: answer.id));
             },
-            leading: Container(
-              padding: const EdgeInsets.all(15.0),
-              decoration: BoxDecoration(
-                color: theme.extension<BrandColors>()!.tertiary,
-                shape: BoxShape.circle,
-              ),
+            iosLeadingSize: 35.0,
+            iosPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+            leading: CircleAvatar(
+              backgroundColor: theme.extension<BrandColors>()!.tertiary,
               child: Text((index + 1).toString()),
             ),
             title: Text(
               answer.text,
               style: theme.textTheme.bodyMedium,
+              maxLines: 5,
             ),
           ),
         ),

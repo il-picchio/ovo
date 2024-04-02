@@ -18,8 +18,8 @@ class ChartBadge extends StatelessWidget {
         height: 50,
         child: AdaptiveButton(
           type: ButtonType.elevated,
-          internalPadding: EdgeInsets.all(0.0),
-          externalPadding: EdgeInsets.all(0.0),
+          internalPadding: const EdgeInsets.all(0.0),
+          externalPadding: const EdgeInsets.all(0.0),
           onPressed: (){},
           child: Icon(
             icon,
