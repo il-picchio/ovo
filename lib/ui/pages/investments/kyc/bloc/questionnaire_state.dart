@@ -4,6 +4,11 @@ sealed class QuestionnaireState extends Equatable {
   const QuestionnaireState();
 }
 
+class QuestionnaireDescriptionState extends QuestionnaireState {
+  @override
+  List<Object?> get props => [];
+}
+
 class QuestionnaireLoaderState extends QuestionnaireState {
   @override
   List<Object?> get props => [];

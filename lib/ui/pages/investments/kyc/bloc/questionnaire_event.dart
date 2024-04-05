@@ -4,6 +4,8 @@ sealed class QuestionnaireEvent {
   const QuestionnaireEvent();
 }
 
+class QuestionnaireDescriptionEvent extends QuestionnaireEvent {}
+
 class QuestionnaireLoaderEvent extends QuestionnaireEvent {}
 
 class QuestionnaireLoadedEvent extends QuestionnaireEvent {}
@@ -20,3 +22,5 @@ class QuestionnairePreviousQuestionEvent extends QuestionnaireEvent {
 
   const QuestionnairePreviousQuestionEvent({ required this.idx });
 }
+
+class QuestionnaireErrorEvent extends QuestionnaireEvent {}

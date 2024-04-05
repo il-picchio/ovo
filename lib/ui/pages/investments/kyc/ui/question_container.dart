@@ -17,58 +17,56 @@ class QuestionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Expanded(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: TweenAnimationBuilder<double>(
-              duration: const Duration(milliseconds: 250),
-              curve: Curves.easeInOut,
-              tween: Tween<double>(begin: 0, end: progress),
-              builder: (context, value, _) => LinearProgressIndicator(
-                value: value,
-                color: Colors.indigo.shade100,
-                backgroundColor: Colors.grey.shade200,
-              ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: TweenAnimationBuilder<double>(
+            duration: const Duration(milliseconds: 250),
+            curve: Curves.easeInOut,
+            tween: Tween<double>(begin: 0, end: progress),
+            builder: (context, value, _) => LinearProgressIndicator(
+              value: value,
+              color: Colors.indigo.shade100,
+              backgroundColor: Colors.grey.shade200,
             ),
           ),
-          const SizedBox(
-            height: 30,
-          ),
-          Text(
-            'Risk assessment',
-            style: theme.textTheme.bodyLarge,
-          ),
-          Text(
-            'Answer honestly',
-            style: theme.textTheme.bodySmall,
-          ),
-          Expanded(
-            child: Center(
-              child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 500),
-                switchInCurve: Curves.decelerate,
-                switchOutCurve: Curves.fastOutSlowIn,
-                transitionBuilder: (Widget child, Animation<double> animation) {
-                  return FadeTransition(opacity: animation, child: child);
-                },
-                child: Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 40.0),
-                  elevation: 20,
-                  key: ValueKey(question?.id),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: question != null
-                        ? QuestionWidget(question: question!, idx: idx)
-                        : const ShimmerQuestion(),
-                  ),
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        Text(
+          'Risk assessment',
+          style: theme.textTheme.bodyLarge,
+        ),
+        Text(
+          'Answer honestly',
+          style: theme.textTheme.bodySmall,
+        ),
+        Expanded(
+          child: Center(
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 500),
+              switchInCurve: Curves.decelerate,
+              switchOutCurve: Curves.fastOutSlowIn,
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return FadeTransition(opacity: animation, child: child);
+              },
+              child: Card(
+                margin: const EdgeInsets.symmetric(horizontal: 40.0),
+                elevation: 20,
+                key: ValueKey(question?.id),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20.0),
+                  child: question != null
+                      ? QuestionWidget(question: question!, idx: idx)
+                      : const ShimmerQuestion(),
                 ),
               ),
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }

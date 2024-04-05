@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ovo/ui/common/widgets/list_tile.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerQuestion extends StatelessWidget {
@@ -26,17 +27,15 @@ class ShimmerQuestion extends StatelessWidget {
           ),
         ),
         ...[0, 1, 2, 3, 4].map(
-          (answer) => ListTile(
+          (answer) => AdaptiveListTile(
+            iosLeadingSize: 35.0,
+            iosPadding:
+                const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
             leading: Shimmer.fromColors(
               baseColor: Colors.grey.shade300,
               highlightColor: Colors.grey.shade200,
-              child: Container(
-                padding: const EdgeInsets.all(15.0),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                ),
-                child: Text((answer + 1).toString()),
+              child: const CircleAvatar(
+                backgroundColor: Colors.white,
               ),
             ),
             title: Shimmer.fromColors(

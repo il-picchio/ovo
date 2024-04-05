@@ -8,8 +8,13 @@ class QuestionnaireApiService {
 
   Future<Iterable<Question>> getQuestionnaire() async {
     await Future.delayed(const Duration(seconds: 2));
-    final Iterable data = jsonDecode(mockquestionnaire);
-    final questionnaire = List<Question>.from(data.map((e) => Question.fromJson(e)));
-    return questionnaire;
+    try {
+      final Iterable data = jsonDecode(mockquestionnaire);
+      final questionnaire =
+          List<Question>.from(data.map((e) => Question.fromJson(e)));
+      return questionnaire;
+    } catch (e) {
+      throw Exception('Failed to load data');
+    }
   }
 }
