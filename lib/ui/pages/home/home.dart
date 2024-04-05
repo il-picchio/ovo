@@ -52,10 +52,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             child: SearchMovement(
               controller: _textController,
               onTap: () => _controller.animateTo(
-                  280, // 450 - 170
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut),
-              onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+                280, // 450 - 170
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              ),
+              onTapOutside: (_) =>
+                  FocusManager.instance.primaryFocus?.unfocus(),
             ),
           ),
         ),
