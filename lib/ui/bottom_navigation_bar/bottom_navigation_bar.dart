@@ -1,8 +1,7 @@
-import 'dart:ui' as ui;
-
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ovo/core/theme/elements/colors.dart';
 
 class OvoNavigationBar extends StatelessWidget {
   final int currentIndex;
@@ -13,6 +12,8 @@ class OvoNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<BrandColors>()!;
+
     return SafeArea(
       minimum: const EdgeInsets.only(bottom: 20.0),
       child: Padding(
@@ -51,16 +52,7 @@ class OvoNavigationBar extends StatelessWidget {
                 icon: Icon(e),
                 activeIcon: ShaderMask(
                   blendMode: BlendMode.srcIn,
-                  shaderCallback: (Rect bounds) {
-                    return ui.Gradient.linear(
-                      const Offset(0, 24.0),
-                      const Offset(24.0, 0),
-                      [
-                        Theme.of(context).colorScheme.primary,
-                        Theme.of(context).colorScheme.secondary,
-                      ],
-                    );
-                  },
+                  shaderCallback: (Rect bounds) => theme.gradient.createShader(bounds),
                   child: SizedBox(
                     child: Icon(e),
                   ),
