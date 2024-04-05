@@ -21,6 +21,7 @@ class KnowYourCustomer extends StatelessWidget {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
+          centerTitle: true,
           automaticallyImplyLeading: false,
           backgroundColor: Colors.transparent,
           title: Text('Know your customer'),

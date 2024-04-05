@@ -16,6 +16,7 @@ class CardPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text('Ovo Debit Card'),
+        centerTitle: true,
       ),
       body: Background(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),

@@ -13,6 +13,7 @@ class InvestmentsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text('Investments'),
+        centerTitle: true,
       ),
       body: Background(
         decorations: Decorations.investments(context),

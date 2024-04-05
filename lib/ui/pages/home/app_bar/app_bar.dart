@@ -20,6 +20,7 @@ class HomeAppBar extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text('Patrimonio totale'),
+        centerTitle: true,
       ),
       body: Background(
         decorations: Decorations.home(context),

@@ -54,6 +54,7 @@ class _OpenPortfolioPageState extends State<OpenPortfolioPage> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
+          centerTitle: true,
           automaticallyImplyLeading: _step > 0,
           backgroundColor: Colors.transparent,
           title: Text('Open portfolio'),
