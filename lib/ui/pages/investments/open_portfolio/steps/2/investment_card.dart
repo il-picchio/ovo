@@ -27,7 +27,6 @@ class InvestmentCard extends StatelessWidget {
 
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 10),
-      elevation: 20,
       child: InkWell(
         onTap: () {},
         child: Stack(

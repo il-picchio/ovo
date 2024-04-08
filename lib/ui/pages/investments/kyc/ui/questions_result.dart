@@ -11,68 +11,66 @@ class QuestionsResult extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Expanded(
-      child: Stack(
-        children: [
-          Positioned(
-            top: 30,
-            left: 0,
-            right: 0,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Your profile is'),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0),
-                  child: Text(
-                    'Wild bird',
-                    style: theme.textTheme.headlineLarge,
-                  ),
+    return Stack(
+      children: [
+        Positioned(
+          top: 30,
+          left: 0,
+          right: 0,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Your profile is'),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(
+                  'Wild bird',
+                  style: theme.textTheme.headlineLarge,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Text(
-                    'You are willing to assume higher risk for higher returns',
-                    style: theme.textTheme.bodyMedium,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Text(
+                  'You are willing to assume higher risk for higher returns',
+                  style: theme.textTheme.bodyMedium,
+                  textAlign: TextAlign.center,
+                ),
+              )
+            ],
+          ),
+        ),
+        Positioned.fill(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: SvgPicture.asset(
+              'assets/bird.svg',
+              fit: BoxFit.cover,
+              width: MediaQuery.of(context).size.width,
+            ),
+          ),
+        ),
+        Positioned.fill(
+          bottom: 20,
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: AdaptiveButton(
+              type: ButtonType.elevated,
+              onPressed: () => Navigator.of(context).popAndPushNamed(Routes.wealthAnalysis),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Start investing',
                     textAlign: TextAlign.center,
                   ),
-                )
-              ],
-            ),
-          ),
-          Positioned.fill(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: SvgPicture.asset(
-                'assets/bird.svg',
-                fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width,
+                  SizedBox(width: 10,),
+                  Icon(FontAwesomeIcons.arrowRight, size: 15,)
+                ],
               ),
             ),
           ),
-          Positioned.fill(
-            bottom: 20,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: AdaptiveButton(
-                type: ButtonType.elevated,
-                onPressed: () => Navigator.of(context).popAndPushNamed(Routes.openPortfolio),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      'Start investing',
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(width: 10,),
-                    Icon(FontAwesomeIcons.arrowRight, size: 15,)
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

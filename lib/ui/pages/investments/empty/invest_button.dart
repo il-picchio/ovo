@@ -12,7 +12,7 @@ class InvestButton extends StatelessWidget {
 
     return AdaptiveButton(
       type: ButtonType.elevated,
-      onPressed: () => Navigator.pushNamed(context, Routes.kyc),
+      onPressed: () => Navigator.pushNamed(context, Routes.wealthAnalysis),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -67,7 +67,6 @@ class PortfolioPage extends StatelessWidget {
             ),
             SizedBox(height: 20,),
             Card(
-              elevation: 20,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30.0),
                 child: Column(

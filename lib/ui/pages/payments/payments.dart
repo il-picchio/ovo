@@ -17,7 +17,6 @@ class PaymentsPage extends StatelessWidget {
           Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Card(
-          elevation: 20,
           child: Column(
             children: [
               PaymentAction(

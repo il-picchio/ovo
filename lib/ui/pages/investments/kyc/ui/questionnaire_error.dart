@@ -23,7 +23,6 @@ class QuestionnaireError extends StatelessWidget {
         const Expanded(child: SizedBox()),
         Card(
           margin: const EdgeInsets.symmetric(horizontal: 40.0),
-          elevation: 20,
           child: Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),

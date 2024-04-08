@@ -44,13 +44,13 @@ class KnowYourCustomer extends StatelessWidget {
                 return const QuestionContainer(
                   question: null,
                   idx: 0,
-                  progress: 0,
+                  progress: 1 / 12,
                 );
               } else if (state is QuestionnaireLoadedState) {
                 return QuestionContainer(
                   question: state.question,
                   idx: state.idx,
-                  progress: state.idx / state.totalQuestions,
+                  progress: (state.idx + 1) / state.totalQuestions,
                 );
               } else if (state is QuestionnaireCompletedState) {
                 return const QuestionsResult();

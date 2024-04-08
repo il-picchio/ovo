@@ -42,6 +42,12 @@ final ovoLightTheme = ThemeData(
       foregroundColor: MaterialStatePropertyAll(Colors.black)
     )
   ),
+  inputDecorationTheme: const InputDecorationTheme(
+    enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black45, strokeAlign: 0.5))
+  ),
+  cardTheme: const CardTheme(
+    elevation: 10
+  ),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
       foregroundColor: const MaterialStatePropertyAll(_kSecondaryTextColor),
@@ -71,10 +77,12 @@ final ovoLightTheme = ThemeData(
   ),
   cupertinoOverrideTheme: CupertinoThemeData(
     primaryColor: _kSecondaryColor,
-    primaryContrastingColor: Colors.black,
+    primaryContrastingColor: Colors.black87,
     textTheme: CupertinoTextThemeData(
-      textStyle: GoogleFonts.montserrat()
-    )
+      textStyle: GoogleFonts.montserrat().copyWith(color: Colors.black87),
+      
+    ),
+    
   ),
   colorScheme: const ColorScheme(
     brightness: Brightness.light,

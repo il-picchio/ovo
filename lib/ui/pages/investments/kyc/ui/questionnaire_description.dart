@@ -33,8 +33,9 @@ class QuestionnaireDescription extends StatelessWidget {
         AdaptiveButton(
             type: ButtonType.elevated,
             onPressed: () => bloc.add(QuestionnaireLoaderEvent()),
-            child: Text('Let\'s start'))
-      ],
+            child: Text('Let\'s start'),),
+            SizedBox(height: 10,)
+      ]
     );
   }
 }
