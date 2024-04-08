@@ -5,7 +5,7 @@ class AdaptiveFormDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!Platform.isIOS) {
+    if (Platform.isIOS) {
       return const Divider(
         color: Color.fromARGB(73, 60, 60, 67),
         thickness: 0.5,

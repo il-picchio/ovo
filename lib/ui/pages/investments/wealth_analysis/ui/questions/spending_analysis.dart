@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ovo/ui/common/widgets/button/button.dart';
@@ -13,8 +12,8 @@ class WealthAnalysisSpending extends StatefulWidget {
 }
 
 class _WealthAnalysisSpendingState extends State<WealthAnalysisSpending> {
-  final TextEditingController _neededSpendingController =
-      TextEditingController();
+  final GlobalKey<FormState> _controller =
+      GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -23,7 +22,6 @@ class _WealthAnalysisSpendingState extends State<WealthAnalysisSpending> {
 
   @override
   void dispose() {
-    _neededSpendingController.dispose();
     super.dispose();
   }
 
@@ -51,12 +49,15 @@ class _WealthAnalysisSpendingState extends State<WealthAnalysisSpending> {
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50.0),
             child: Form(
+              key: _controller,
                 child: Column(
               children: [
                 AdaptiveFormField(
                   label: 'Necessita',
                   prefix: 'CHF',
                   inputType: TextInputType.numberWithOptions(decimal: true),
+                  autofocus: true,
+                  validator: (s) => 'text',
                 ),
                 AdaptiveFormDivider(),
                 AdaptiveFormField(
@@ -72,7 +73,7 @@ class _WealthAnalysisSpendingState extends State<WealthAnalysisSpending> {
         AdaptiveButton(
           type: ButtonType.elevated,
           onPressed: () {
-            print('test');
+            print(_controller.currentState?.validate());
           },
           child: Text('Proceed'),
         ),
@@ -80,7 +81,7 @@ class _WealthAnalysisSpendingState extends State<WealthAnalysisSpending> {
           type: ButtonType.text,
           onPressed: () => context
               .read<WealthAnalysisBloc>()
-              .add(const WealthAnalysisPreviousStepEvent(currentStep: 1)),
+              .add(const WealthAnalysisPreviousStepEvent(currentStep: 3)),
           child: Text('Back'),
         )
       ],

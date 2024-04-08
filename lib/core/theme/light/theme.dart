@@ -43,7 +43,8 @@ final ovoLightTheme = ThemeData(
     )
   ),
   inputDecorationTheme: const InputDecorationTheme(
-    enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black45, strokeAlign: 0.5))
+    labelStyle: TextStyle(color: Colors.black87),
+    enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black87, width: 0.5))
   ),
   cardTheme: const CardTheme(
     elevation: 10
@@ -80,7 +81,6 @@ final ovoLightTheme = ThemeData(
     primaryContrastingColor: Colors.black87,
     textTheme: CupertinoTextThemeData(
       textStyle: GoogleFonts.montserrat().copyWith(color: Colors.black87),
-      
     ),
     
   ),
@@ -90,7 +90,7 @@ final ovoLightTheme = ThemeData(
     secondary: _kSecondaryColor,
     onPrimary: Colors.white,
     onSecondary: Colors.white,
-    error: Color.fromRGBO(75, 0, 0, 1),
+    error: _kSecondaryTextColor,
     onError: Colors.white,
     background: Colors.white,
     onBackground: Colors.black87,

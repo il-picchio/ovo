@@ -60,10 +60,8 @@ class AdaptiveTextField extends StatelessWidget {
             : TextField(
                 decoration: prefix != null || placeholder != null
                     ? InputDecoration(
-                        prefixIcon: prefix,
-                        hintText: placeholder,
-                        prefixIconConstraints:
-                            const BoxConstraints(minHeight: 0, minWidth: 0))
+                        prefix: prefix,
+                        hintText: placeholder,)
                     : const InputDecoration(),
                 keyboardType: inputType,
                 controller: controller,
