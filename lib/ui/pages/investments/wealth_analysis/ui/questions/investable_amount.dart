@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ovo/ui/common/widgets/button/button.dart';
+import 'package:ovo/ui/common/widgets/currency_picker/currency_picker.dart';
 import 'package:ovo/ui/common/widgets/text_field.dart';
 import 'package:ovo/ui/pages/investments/wealth_analysis/bloc/wealth_analysis_bloc.dart';
 
@@ -46,16 +47,24 @@ class _WealthAnalysisInvestAmountState extends State<WealthAnalysisInvestAmount>
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50.0),
-          child: AdaptiveTextField(
-            placeholder: '1000.00',
-            prefix: const Text('CHF'),
-            controller: controller,
-            textAlign: TextAlign.center,
-            inputType: const TextInputType.numberWithOptions(decimal: true),
-            onTapOutside: (evt) =>
-                FocusManager.instance.primaryFocus?.unfocus(),
-            autofocus: true,
-            error: hasError ? 'Inputted value is not a valid number' : null,
+          child: Row(
+            children: [
+              Flexible(flex: 2, child: CurrencyPicker(selectedId: 'CHF', onChanged: (a)=> print(a))),
+              SizedBox(width: 15,),
+              Flexible(
+                flex: 3,
+                child: AdaptiveTextField(
+                  placeholder: '1000.00',
+                  controller: controller,
+                  textAlign: TextAlign.center,
+                  inputType: const TextInputType.numberWithOptions(decimal: true),
+                  onTapOutside: (evt) =>
+                      FocusManager.instance.primaryFocus?.unfocus(),
+                  autofocus: true,
+                  error: hasError ? 'Inputted value is not a valid number' : null,
+                ),
+              ),
+            ],
           ),
         ),
         const SizedBox(
