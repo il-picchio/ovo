@@ -47,6 +47,7 @@ class _WealthAnalysisSalaryState extends State<WealthAnalysisSalary> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50.0),
           child: AdaptiveTextField(
+            onChanged: (a) {},
             placeholder: '80000.00',
             prefix: const Text('CHF'),
             controller: controller,
@@ -54,7 +55,6 @@ class _WealthAnalysisSalaryState extends State<WealthAnalysisSalary> {
             inputType: const TextInputType.numberWithOptions(decimal: true),
             onTapOutside: (evt) => FocusManager.instance.primaryFocus?.unfocus(),
             autofocus: true,
-            error: hasError ? 'Inputted value is not a valid number' : null,
           ),
         ),
         const SizedBox(

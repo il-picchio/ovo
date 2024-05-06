@@ -1,29 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ovo/ui/pages/investments/wealth_analysis/ui/questions/investable_amount.dart';
-import 'package:ovo/ui/pages/investments/wealth_analysis/ui/questions/liquidable_funds.dart';
-import 'package:ovo/ui/pages/investments/wealth_analysis/ui/questions/salary.dart';
-import 'package:ovo/ui/pages/investments/wealth_analysis/ui/questions/emergency_fund.dart';
-import 'package:ovo/ui/pages/investments/wealth_analysis/ui/questions/spending_analysis.dart';
+import 'package:ovo/ui/pages/investments/wealth_analysis/bloc/wealth_analysis_bloc.dart';
 
 class WealthAnalysisQuestionContainer extends StatelessWidget {
-  final int step;
+  final QuestionId id;
+  final Widget child;
 
-  const WealthAnalysisQuestionContainer({super.key, required this.step});
-
-  _getChild(int step) {
-    switch (step) {
-      case 0:
-        return const WealthAnalysisInvestAmount();
-      case 1:
-        return const WealthAnalysisLiquidableFunds();
-      case 2:
-        return const WealthAnalysisSalary();
-      case 3:
-        return const WealthAnalysisSpending();
-      
-    }
-    return const Placeholder();
-  }
+  const WealthAnalysisQuestionContainer(
+      {super.key, required this.id, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +17,10 @@ class WealthAnalysisQuestionContainer extends StatelessWidget {
           child: TweenAnimationBuilder<double>(
             duration: const Duration(milliseconds: 500),
             curve: Curves.easeInOut,
-            tween: Tween<double>(begin: 0, end: (step + 1) / 10),
+            tween: Tween<double>(
+                begin: 0,
+                end: (QuestionId.values.indexOf(id) + 1) /
+                    QuestionId.values.length),
             builder: (context, value, _) => LinearProgressIndicator(
               value: value,
               color: Colors.indigo.shade100,
@@ -44,8 +30,8 @@ class WealthAnalysisQuestionContainer extends StatelessWidget {
         ),
         Expanded(
           child: Padding(
-             padding:
-                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 250),
               switchInCurve: Curves.decelerate,
@@ -54,15 +40,15 @@ class WealthAnalysisQuestionContainer extends StatelessWidget {
                 return FadeTransition(opacity: animation, child: child);
               },
               child: Column(
-                key: ValueKey(step),
+                key: ValueKey(id),
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Card(
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
-                      child: _getChild(step)
+                      child: child,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

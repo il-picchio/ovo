@@ -1,5 +1,9 @@
+import 'package:ovo/ui/pages/investments/wealth_analysis/models/investment_type.dart';
+
 class Wealth {
-  double? declaredWealth;
+  InvestmentType investmentType = InvestmentType.regularly;
+  double? initialInvestment;
+  double? regularInvestment;
   double? salary;
   double? liquidableAmount;
 }

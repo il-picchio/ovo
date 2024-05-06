@@ -6,10 +6,20 @@ sealed class WealthAnalysisEvent {
 
 class WealthAnalysisDescriptionEvent extends WealthAnalysisEvent {}
 
-class WealthAnalysisDeclaredWealthEvent extends WealthAnalysisEvent {
-  final double declaredWealth;
+class WealthAnalysisDescriptionReadEvent extends WealthAnalysisEvent {
+  const WealthAnalysisDescriptionReadEvent();
+}
 
-  const WealthAnalysisDeclaredWealthEvent({ required this.declaredWealth });
+class WealthAnalysisInvestmentFrequencyEvent extends WealthAnalysisEvent {
+  final InvestmentType type;
+
+  const WealthAnalysisInvestmentFrequencyEvent({ required this.type });
+}
+
+class WealthAnalysisInitialInvestEvent extends WealthAnalysisEvent {
+  final List<CurrencyValueMap> initialInvestment;
+
+  const WealthAnalysisInitialInvestEvent({ required this.initialInvestment });
 }
 
 class WealthAnalysisLiquidableFundsEvent extends WealthAnalysisEvent {

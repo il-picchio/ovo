@@ -1,50 +1,48 @@
 part of 'adaptive_form.dart';
 
 class AdaptiveFormField extends StatelessWidget {
-  final String label;
   final String? prefix;
   final TextInputType? inputType;
   final String? Function(String?)? validator;
   final String? placeholder;
   final bool autofocus;
+  final void Function(PointerDownEvent) onTapOutside;
+  final void Function(String) onChange;
 
-  const AdaptiveFormField(
+  AdaptiveFormField(
       {super.key,
-      required this.label,
+      required this.onChange,
       this.inputType,
       this.validator,
       this.placeholder,
       this.prefix,
-      this.autofocus = false});
+      this.autofocus = false,
+      void Function(PointerDownEvent)? onTapOutside})
+      : onTapOutside = onTapOutside ??
+            ((pointer) => FocusManager.instance.primaryFocus?.unfocus());
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Platform.isIOS
-        ? Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Text(label.toUpperCase(),
-                    style: theme.textTheme.labelSmall!
-                        .copyWith(color: const Color.fromARGB(200, 60, 60, 67))),
-              ),
-              Expanded(
-                flex: 2,
-                child: CupertinoTextFormFieldRow(
-                  prefix: prefix != null ? Text(prefix!) : null,
-                  keyboardType: inputType,
-                  validator: validator,
-                  placeholder: placeholder,
-                  autofocus: autofocus,
-                  textInputAction: TextInputAction.continueAction,
-                ),
-              )
-            ],
+        ? TapRegion(
+            onTapOutside: onTapOutside,
+            child: CupertinoTextFormFieldRow(
+              onChanged: onChange,
+              padding: const EdgeInsets.all(0.0),
+              prefix: prefix != null ? Text(prefix!) : null,
+              keyboardType: inputType,
+              validator: validator,
+              placeholder: placeholder,
+              autofocus: autofocus,
+              textAlign: TextAlign.center,
+              textInputAction: TextInputAction.continueAction,
+            ),
           )
         : TextFormField(
+            onChanged: onChange,
+            onTapOutside: onTapOutside,
             decoration: InputDecoration(
-                labelText: label,
+              errorMaxLines: 2,
                 hintText: placeholder,
                 prefix: prefix != null
                     ? Padding(
@@ -56,6 +54,7 @@ class AdaptiveFormField extends StatelessWidget {
                     const BoxConstraints(minWidth: 0, minHeight: 0)),
             validator: validator,
             keyboardType: inputType,
+            textAlign: TextAlign.center,
             autofocus: autofocus,
           );
   }

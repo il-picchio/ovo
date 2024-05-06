@@ -21,8 +21,7 @@ class WealthAnalysisDescription extends StatelessWidget {
         ),
         const Expanded(
           child: Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
             child: SingleChildScrollView(
               child: Text('Some text'),
             ),
@@ -30,8 +29,9 @@ class WealthAnalysisDescription extends StatelessWidget {
         ),
         AdaptiveButton(
           type: ButtonType.elevated,
-          onPressed: () =>
-              context.read<WealthAnalysisBloc>().add(const WealthAnalysisNextStepEvent(currentStep: -1)),
+          onPressed: () => context
+              .read<WealthAnalysisBloc>()
+              .add(const WealthAnalysisDescriptionReadEvent()),
           child: Text('Let\'s start'),
         ),
         AdaptiveButton(
@@ -50,7 +50,9 @@ class WealthAnalysisDescription extends StatelessWidget {
           },
           child: Text('Skip'),
         ),
-        SizedBox(height: 10,)
+        SizedBox(
+          height: 10,
+        )
       ],
     );
   }

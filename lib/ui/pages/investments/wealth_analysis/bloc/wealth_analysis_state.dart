@@ -6,7 +6,16 @@ sealed class WealthAnalysisState {
 
 class WealthAnalysisDescriptionState extends WealthAnalysisState {}
 
+enum QuestionId {
+  investFrequency,
+  investAmount,
+  regularInvestAmount,
+  liquidableFunds,
+  salary,
+  spending
+}
+
 class WealthAnalysisQuestionState extends WealthAnalysisState {
-  final int step;
-  const WealthAnalysisQuestionState({ required this.step });
+  final QuestionId id;
+  const WealthAnalysisQuestionState({ required this.id });
 }

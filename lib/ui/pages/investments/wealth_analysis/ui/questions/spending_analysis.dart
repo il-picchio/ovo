@@ -53,7 +53,7 @@ class _WealthAnalysisSpendingState extends State<WealthAnalysisSpending> {
                 child: Column(
               children: [
                 AdaptiveFormField(
-                  label: 'Necessita',
+                  onChange: (p0) {},
                   prefix: 'CHF',
                   inputType: TextInputType.numberWithOptions(decimal: true),
                   autofocus: true,
@@ -61,7 +61,7 @@ class _WealthAnalysisSpendingState extends State<WealthAnalysisSpending> {
                 ),
                 AdaptiveFormDivider(),
                 AdaptiveFormField(
-                  label: 'Svago',
+                  onChange: (p0) {},
                   prefix: 'CHF',
                   inputType: TextInputType.numberWithOptions(decimal: true),
                 )

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ovo/ui/common/widgets/text_field.dart';
@@ -30,6 +29,7 @@ class SearchMovement extends StatelessWidget {
               child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: AdaptiveTextField(
+              onChanged: (a) {},
               controller: controller,
               onTap: onTap,
               onTapOutside: onTapOutside,

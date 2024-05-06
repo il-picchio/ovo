@@ -18,7 +18,6 @@ class InvestmentsChart extends StatelessWidget {
       tooltipBehavior: TooltipBehavior(
         header: '',
         enable: true,
-        borderColor: null,
         borderWidth: 0,
         opacity: 0,
         builder: (data, point, series, pointIndex, seriesIndex) => Container(

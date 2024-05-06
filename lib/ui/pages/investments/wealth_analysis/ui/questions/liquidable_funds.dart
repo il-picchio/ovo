@@ -56,6 +56,7 @@ class _WealthAnalysisInvestAmountState
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50.0),
           child: AdaptiveTextField(
+            onChanged: (a) {},
             placeholder: '100000.00',
             prefix: const Text('CHF'),
             controller: controller,
@@ -64,7 +65,7 @@ class _WealthAnalysisInvestAmountState
             onTapOutside: (evt) =>
                 FocusManager.instance.primaryFocus?.unfocus(),
             autofocus: true,
-            error: hasError ? 'Inputted value is not a valid number' : null,
+            hasError: hasError,
           ),
         ),
         const SizedBox(
