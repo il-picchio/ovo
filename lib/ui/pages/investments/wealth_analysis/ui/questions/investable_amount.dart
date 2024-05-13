@@ -4,9 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ovo/models/currency.dart';
 import 'package:ovo/ui/common/widgets/button/button.dart';
-import 'package:ovo/ui/common/widgets/currency_picker/currency_picker.dart';
-import 'package:ovo/ui/common/widgets/form/adaptive_form.dart';
-import 'package:ovo/ui/common/widgets/text_field.dart';
+import 'package:ovo/ui/common/widgets/currency_amount_handler.dart';
 import 'package:ovo/ui/pages/investments/wealth_analysis/bloc/wealth_analysis_bloc.dart';
 import 'package:ovo/ui/pages/investments/wealth_analysis/models/currency_value_map/currency_value_map.dart';
 
@@ -30,11 +28,12 @@ class _WealthAnalysisInitialInvestAmountState
     final theme = Theme.of(context);
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           'How much you want to invest initially?',
-          style:
-              theme.textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
+          style: theme.textTheme.bodyLarge!
+              .copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(
           height: 5,
@@ -46,59 +45,75 @@ class _WealthAnalysisInitialInvestAmountState
         const SizedBox(
           height: 20,
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: Form(
-            key: _formKey,
+        Flexible(
+          child: Scrollbar(
             child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  ..._investmentMap.mapIndexed(
-                    (index, e) => Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Flexible(
-                          flex: 1,
-                          child: CurrencyPicker(
-                            selectedId: _investmentMap[index].currency,
-                            onChanged: (a) {
-                              if (a != null) {
-                                _investmentMap[index].currency = a.id;
-                              }
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                child: Form(
+                  key: _formKey,
+                  autovalidateMode: AutovalidateMode.always,
+                  child: Column(
+                    children: _investmentMap
+                        .mapIndexed(
+                          (index, e) => FormField(
+                            validator: (_) {
+                              final amount = _investmentMap[index].value;
+                              return amount == null ||
+                                      amount.isEmpty ||
+                                      double.tryParse(amount) == null
+                                  ? 'Please insert a valid amount'
+                                  : null;
                             },
+                            builder: (state) => CurrencyAmountRow(
+                                currency: _investmentMap[index].currency,
+                                amount: _investmentMap[index].value,
+                                onCurrencyChanged: (currency) {
+                                  if (currency == null) return;
+                                  _investmentMap[index].currency =
+                                      currency.id;
+                                },
+                                onAmountChanged: (amount) {
+                                  _investmentMap[index].value =
+                                      amount.replaceAll(',', '.');
+                                },
+                                error: state.errorText),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: AdaptiveTextField(
-                            onChanged: (p0) => _investmentMap[index].value = p0,
-                            placeholder: '1000.00',
-                            inputType: const TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
-                            autofocus: true,
-                            hasError: false,
-                          ),
-                        ),
-                      ],
-                    ),
+                        )
+                        .toList(growable: false),
                   ),
-                  AdaptiveButton(
-                      type: ButtonType.outlined,
-                      onPressed: () => setState(() => _investmentMap.add(
-                          CurrencyValueMap(
-                              currency: Currency.chf.id, value: null))),
-                      child: Text('Add more details'))
-                ],
+                ),
               ),
             ),
           ),
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            AdaptiveButton(
+                type: ButtonType.outlined,
+                onPressed: () => setState(() => _investmentMap.add(
+                    CurrencyValueMap(
+                        currency: Currency.chf.id, value: null))),
+                child: Text(
+                  '+ Add more details',
+                  style: TextStyle(fontSize: 12),
+                )),
+          ],
+        ),
         const SizedBox(
-          height: 20,
+          height: 10,
+        ),
+        AdaptiveButton(
+          type: ButtonType.text,
+          onPressed: () {
+            context.read<WealthAnalysisBloc>().add(
+                  WealthAnalysisInitialInvestEvent(initialInvestment: [
+                    CurrencyValueMap(currency: Currency.chf.id, value: null)
+                  ]),
+                );
+          },
+          child: Text('Back'),
         ),
         AdaptiveButton(
           type: ButtonType.elevated,

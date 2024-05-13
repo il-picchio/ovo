@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ovo/ui/common/widgets/text_field.dart';
+import 'package:ovo/ui/common/widgets/adaptive_text_field/adaptive_text_field.dart';
 
 class SearchMovement extends StatelessWidget {
   final TextEditingController controller;

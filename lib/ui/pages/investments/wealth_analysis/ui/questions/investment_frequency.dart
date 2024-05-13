@@ -12,7 +12,9 @@ class InvestmentFrequency extends StatelessWidget {
     final theme = Theme.of(context);
     final bloc = context.read<WealthAnalysisBloc>();
 
-    return Column(children: [
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
       Text(
         'What\'s the frequency you would like to invest?',
         style: theme.textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),

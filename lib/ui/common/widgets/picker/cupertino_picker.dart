@@ -28,12 +28,16 @@ class _CupertinoPickerState<T> extends State<CupertinoPicker<T>> {
 
   @override
   Widget build(BuildContext context) {
+    final fontFamily = Theme.of(context).textTheme.bodyLarge!.fontFamily;
     final selectedItem =
         widget.items.firstWhere((element) => element.id == selectedId);
     return PullDownButton(
       itemBuilder: (context) => widget.items
           .map(
             (e) => PullDownMenuItem.selectable(
+              itemTheme: PullDownMenuItemTheme(
+                textStyle: TextStyle(fontFamily: fontFamily)
+              ),
               selected: e.id == selectedId,
               iconWidget: e.leading,
               title: e.label,

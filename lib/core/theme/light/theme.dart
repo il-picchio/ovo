@@ -22,7 +22,9 @@ final ovoLightTheme = ThemeData(
         positiveAmounts: Colors.green.shade200,
         stocks: _kStocksColor,
         bonds: _kBondsColor,
-        crypto: _kCryptoColor),
+        crypto: _kCryptoColor,
+        errorColor:
+            Platform.isIOS ? CupertinoColors.systemRed : Colors.red.shade700),
     Shadows(shadows: _kShadows)
   ],
   tooltipTheme: TooltipThemeData(
@@ -38,17 +40,13 @@ final ovoLightTheme = ThemeData(
     ),
   ),
   filledButtonTheme: const FilledButtonThemeData(
-    style: ButtonStyle(
-      foregroundColor: MaterialStatePropertyAll(Colors.black)
-    )
-  ),
+      style:
+          ButtonStyle(foregroundColor: MaterialStatePropertyAll(Colors.black))),
   inputDecorationTheme: const InputDecorationTheme(
-    labelStyle: TextStyle(color: Colors.black87),
-    enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black87, width: 0.5))
-  ),
-  cardTheme: const CardTheme(
-    elevation: 10
-  ),
+      labelStyle: TextStyle(color: Colors.black87),
+      enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.black87, width: 0.5))),
+  cardTheme: const CardTheme(elevation: 10),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
       foregroundColor: const MaterialStatePropertyAll(_kSecondaryTextColor),
@@ -82,7 +80,6 @@ final ovoLightTheme = ThemeData(
     textTheme: CupertinoTextThemeData(
       textStyle: GoogleFonts.montserrat().copyWith(color: Colors.black87),
     ),
-    
   ),
   colorScheme: const ColorScheme(
     brightness: Brightness.light,

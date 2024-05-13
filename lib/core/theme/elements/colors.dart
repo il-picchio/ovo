@@ -10,6 +10,7 @@ class BrandColors extends ThemeExtension<BrandColors> {
   final Color crypto;
   final Color negativeAmounts;
   final Color positiveAmounts;
+  final Color errorColor;
 
   final Gradient gradient;
 
@@ -22,7 +23,8 @@ class BrandColors extends ThemeExtension<BrandColors> {
       required this.positiveAmounts,
       required this.stocks,
       required this.bonds,
-      required this.crypto})
+      required this.crypto,
+      required this.errorColor})
       : gradient = LinearGradient(
             colors: [primary, secondary],
             begin: Alignment.bottomLeft,
@@ -38,7 +40,8 @@ class BrandColors extends ThemeExtension<BrandColors> {
       Color? bonds,
       Color? crypto,
       Color? negativeAmounts,
-      Color? positiveAmounts}) {
+      Color? positiveAmounts,
+      Color? errorColor}) {
     return BrandColors(
         primary: primary ?? this.primary,
         secondary: secondary ?? this.secondary,
@@ -48,7 +51,8 @@ class BrandColors extends ThemeExtension<BrandColors> {
         bonds: bonds ?? this.bonds,
         crypto: crypto ?? this.crypto,
         negativeAmounts: negativeAmounts ?? this.negativeAmounts,
-        positiveAmounts: positiveAmounts ?? this.positiveAmounts);
+        positiveAmounts: positiveAmounts ?? this.positiveAmounts,
+        errorColor: errorColor ?? this.errorColor);
   }
 
   @override
@@ -72,6 +76,7 @@ class BrandColors extends ThemeExtension<BrandColors> {
                 negativeAmounts,
         positiveAmounts:
             Color.lerp(positiveAmounts, other.positiveAmounts, t) ??
-                positiveAmounts);
+                positiveAmounts,
+        errorColor: Color.lerp(errorColor, other.errorColor, t) ?? errorColor);
   }
 }
