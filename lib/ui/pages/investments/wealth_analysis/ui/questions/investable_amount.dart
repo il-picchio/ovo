@@ -52,7 +52,6 @@ class _WealthAnalysisInitialInvestAmountState
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: Form(
                   key: _formKey,
-                  autovalidateMode: AutovalidateMode.always,
                   child: Column(
                     children: _investmentMap
                         .mapIndexed(
@@ -74,9 +73,9 @@ class _WealthAnalysisInitialInvestAmountState
                                       currency.id;
                                 },
                                 onAmountChanged: (amount) {
-                                  _investmentMap[index].value =
-                                      amount.replaceAll(',', '.');
+                                  _investmentMap[index].value = amount;
                                 },
+                                amountPlaceholder: '1000.00',
                                 error: state.errorText),
                           ),
                         )

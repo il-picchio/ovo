@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ovo/ui/common/widgets/adaptive_text_field/android_text_field.dart';
 import 'package:ovo/ui/common/widgets/adaptive_text_field/ios_text_field.dart';
 
@@ -17,6 +18,7 @@ class AdaptiveTextField extends StatelessWidget {
   final void Function(String) onChanged;
   final Widget? prefix;
   final String? placeholder;
+  final List<TextInputFormatter>? inputFormatters;
 
   const AdaptiveTextField(
       {super.key,
@@ -30,7 +32,8 @@ class AdaptiveTextField extends StatelessWidget {
       bool? autofocus,
       this.prefix,
       this.hasError = false,
-      this.placeholder})
+      this.placeholder,
+      this.inputFormatters})
       : maxLines = maxLines ?? 1,
         textAlign = textAlign ?? TextAlign.start,
         autofocus = autofocus ?? false;
@@ -45,6 +48,7 @@ class AdaptiveTextField extends StatelessWidget {
             controller: controller,
             textAlign: textAlign,
             onTap: onTap,
+            inputFormatters: inputFormatters,
             onTapOutside: onTapOutside,
             autofocus: autofocus,
             prefix: prefix,
@@ -57,6 +61,7 @@ class AdaptiveTextField extends StatelessWidget {
             maxLines: maxLines,
             controller: controller,
             textAlign: textAlign,
+            inputFormatters: inputFormatters,
             onTap: onTap,
             onTapOutside: onTapOutside,
             autofocus: autofocus,

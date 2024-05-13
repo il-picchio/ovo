@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ovo/core/theme/elements/colors.dart';
 
 class IosTextField extends StatelessWidget {
@@ -14,6 +15,7 @@ class IosTextField extends StatelessWidget {
   final void Function(String) onChanged;
   final Widget? prefix;
   final String? placeholder;
+  final List<TextInputFormatter>? inputFormatters;
 
   const IosTextField(
       {super.key,
@@ -27,7 +29,8 @@ class IosTextField extends StatelessWidget {
       bool? autofocus,
       this.prefix,
       this.hasError = false,
-      this.placeholder})
+      this.placeholder,
+      this.inputFormatters})
       : maxLines = maxLines ?? 1,
         textAlign = textAlign ?? TextAlign.start,
         autofocus = autofocus ?? false;
@@ -52,6 +55,7 @@ class IosTextField extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: prefix,
       ),
+      inputFormatters: inputFormatters,
       keyboardType: inputType,
       controller: controller,
       onTap: onTap,

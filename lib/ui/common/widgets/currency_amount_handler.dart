@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ovo/core/theme/elements/colors.dart';
 import 'package:ovo/ui/common/widgets/adaptive_text_field/adaptive_text_field.dart';
 import 'package:ovo/ui/common/widgets/currency_picker/currency_picker.dart';
@@ -46,11 +47,12 @@ class CurrencyAmountRow extends StatelessWidget {
             Flexible(
               flex: 3,
               child: AdaptiveTextField(
-                onChanged: onAmountChanged,
+                onChanged: (amount) => onAmountChanged(amount.replaceAll(',', '.')),
                 placeholder: amountPlaceholder,
                 inputType: const TextInputType.numberWithOptions(
                   decimal: true,
                 ),
+                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*(\.|,)?[0-9]{0,2}'))],
                 autofocus: autofocus,
                 hasError: error != null,
               ),

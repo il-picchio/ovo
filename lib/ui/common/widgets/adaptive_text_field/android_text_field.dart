@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ovo/core/theme/elements/colors.dart';
 
 class AndroidTextField extends StatelessWidget {
@@ -13,6 +14,7 @@ class AndroidTextField extends StatelessWidget {
   final void Function(String) onChanged;
   final Widget? prefix;
   final String? placeholder;
+  final List<TextInputFormatter>? inputFormatters;
 
   const AndroidTextField(
       {super.key,
@@ -26,7 +28,8 @@ class AndroidTextField extends StatelessWidget {
       bool? autofocus,
       this.prefix,
       this.hasError = false,
-      this.placeholder})
+      this.placeholder,
+      this.inputFormatters})
       : maxLines = maxLines ?? 1,
         textAlign = textAlign ?? TextAlign.start,
         autofocus = autofocus ?? false;
@@ -50,6 +53,7 @@ class AndroidTextField extends StatelessWidget {
         prefix: prefix,
         hintText: placeholder,
       ),
+      inputFormatters: inputFormatters,
       keyboardType: inputType,
       controller: controller,
       onTap: onTap,
