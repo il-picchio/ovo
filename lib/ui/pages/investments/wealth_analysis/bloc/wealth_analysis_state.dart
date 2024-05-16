@@ -7,6 +7,7 @@ sealed class WealthAnalysisState {
 class WealthAnalysisDescriptionState extends WealthAnalysisState {}
 
 enum QuestionId {
+  infoRead,
   investFrequency,
   investAmount,
   regularInvestAmount,

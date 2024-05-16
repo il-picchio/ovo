@@ -11,7 +11,7 @@ class WealthAnalysisDescriptionReadEvent extends WealthAnalysisEvent {
 }
 
 class WealthAnalysisInvestmentFrequencyEvent extends WealthAnalysisEvent {
-  final InvestmentType type;
+  final InvestmentType? type;
 
   const WealthAnalysisInvestmentFrequencyEvent({ required this.type });
 }
@@ -20,6 +20,12 @@ class WealthAnalysisInitialInvestEvent extends WealthAnalysisEvent {
   final List<CurrencyValueMap> initialInvestment;
 
   const WealthAnalysisInitialInvestEvent({ required this.initialInvestment });
+}
+
+class WealthAnalysisRecurringInvestEvent extends WealthAnalysisEvent {
+  final List<CurrencyValueMap> recurringInvestment;
+
+  const WealthAnalysisRecurringInvestEvent({ required this.recurringInvestment });
 }
 
 class WealthAnalysisLiquidableFundsEvent extends WealthAnalysisEvent {
@@ -34,14 +40,8 @@ class WealthAnalysisDeclaredSalaryEvent extends WealthAnalysisEvent {
   const WealthAnalysisDeclaredSalaryEvent({ required this.declaredSalary });
 }
 
-class WealthAnalysisNextStepEvent extends WealthAnalysisEvent {
-  final int currentStep;
-  
-  const WealthAnalysisNextStepEvent({ required this.currentStep });
-}
-
 class WealthAnalysisPreviousStepEvent extends WealthAnalysisEvent {
-  final int currentStep;
+  final QuestionId currentStep;
 
   const WealthAnalysisPreviousStepEvent({ required this.currentStep });
 }

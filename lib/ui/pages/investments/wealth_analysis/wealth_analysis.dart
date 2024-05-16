@@ -4,9 +4,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ovo/ui/common/background/background.dart';
 import 'package:ovo/ui/common/background/decorations.dart';
 import 'package:ovo/ui/pages/investments/wealth_analysis/bloc/wealth_analysis_bloc.dart';
-import 'package:ovo/ui/pages/investments/wealth_analysis/ui/questions/investable_amount.dart';
+import 'package:ovo/ui/pages/investments/wealth_analysis/ui/questions/initial_investable_amount.dart';
 import 'package:ovo/ui/pages/investments/wealth_analysis/ui/questions/investment_frequency.dart';
 import 'package:ovo/ui/pages/investments/wealth_analysis/ui/questions/liquidable_funds.dart';
+import 'package:ovo/ui/pages/investments/wealth_analysis/ui/questions/recurring_investment_amount.dart';
 import 'package:ovo/ui/pages/investments/wealth_analysis/ui/questions/salary.dart';
 import 'package:ovo/ui/pages/investments/wealth_analysis/ui/questions/spending_analysis.dart';
 import 'package:ovo/ui/pages/investments/wealth_analysis/ui/questions/wealth_analysis_question_container.dart';
@@ -14,11 +15,12 @@ import 'package:ovo/ui/pages/investments/wealth_analysis/ui/wealth_analysis_desc
 
 class WealthAnalysis extends StatelessWidget {
   static final _questionToWidget = <QuestionId, Widget Function()>{
-    QuestionId.investFrequency: () => const InvestmentFrequency(),
-    QuestionId.investAmount: () => const WealthAnalysisInitialInvestAmount(),
-    QuestionId.liquidableFunds: () => const WealthAnalysisLiquidableFunds(),
-    QuestionId.salary: () => const WealthAnalysisSalary(),
-    QuestionId.spending: () => const WealthAnalysisSpending()
+    InvestmentFrequency.id: () => const InvestmentFrequency(),
+    WealthAnalysisInitialInvestAmount.id: () => const WealthAnalysisInitialInvestAmount(),
+    WealthAnalysisRecurringInvestmentAmount.id: () => const WealthAnalysisRecurringInvestmentAmount(),
+    WealthAnalysisLiquidableFunds.id: () => const WealthAnalysisLiquidableFunds(),
+    WealthAnalysisSalary.id: () => const WealthAnalysisSalary(),
+    WealthAnalysisSpending.id: () => const WealthAnalysisSpending()
   };
 
   const WealthAnalysis({super.key});
@@ -50,7 +52,6 @@ class WealthAnalysis extends StatelessWidget {
                 return const WealthAnalysisDescription();
               }
               if (state is WealthAnalysisQuestionState) {
-                print(state.id);
                 final Widget Function() widget = _questionToWidget[state.id] ?? (() => const Placeholder());
                 return WealthAnalysisQuestionContainer(id: state.id, child: widget());
               }

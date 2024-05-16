@@ -1,23 +1,32 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ovo/models/currency.dart';
 import 'package:ovo/ui/common/widgets/button/button.dart';
 import 'package:ovo/ui/common/widgets/currency_amount_handler.dart';
-import 'package:ovo/ui/pages/investments/wealth_analysis/bloc/wealth_analysis_bloc.dart';
 import 'package:ovo/ui/pages/investments/wealth_analysis/models/currency_value_map/currency_value_map.dart';
+import 'package:ovo/ui/pages/investments/wealth_analysis/ui/questions/base_widgets/footer_buttons.dart';
 
-class WealthAnalysisInitialInvestAmount extends StatefulWidget {
-  const WealthAnalysisInitialInvestAmount({super.key});
+class MultipleInvestableAmounts extends StatefulWidget {
+  final String title;
+  final String subtitle;
+  final void Function() onBackButtonPressed;
+  final void Function(List<CurrencyValueMap>) onNextButtonPressed;
+
+  const MultipleInvestableAmounts(
+      {super.key,
+      required this.title,
+      required this.subtitle,
+      required this.onBackButtonPressed,
+      required this.onNextButtonPressed});
 
   @override
-  State<WealthAnalysisInitialInvestAmount> createState() =>
+  State<MultipleInvestableAmounts> createState() =>
       _WealthAnalysisInitialInvestAmountState();
 }
 
 class _WealthAnalysisInitialInvestAmountState
-    extends State<WealthAnalysisInitialInvestAmount> {
+    extends State<MultipleInvestableAmounts> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final List<CurrencyValueMap> _investmentMap = [
     CurrencyValueMap(currency: Currency.chf.id, value: null)
@@ -31,15 +40,15 @@ class _WealthAnalysisInitialInvestAmountState
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          'How much you want to invest initially?',
-          style: theme.textTheme.bodyLarge!
-              .copyWith(fontWeight: FontWeight.bold),
+          widget.title,
+          style:
+              theme.textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(
           height: 5,
         ),
         Text(
-          'This is only a lump sum investment, will be done as soon as possible and won`t be repeated',
+          widget.subtitle,
           style: theme.textTheme.bodySmall,
         ),
         const SizedBox(
@@ -68,9 +77,7 @@ class _WealthAnalysisInitialInvestAmountState
                                 currency: _investmentMap[index].currency,
                                 amount: _investmentMap[index].value,
                                 onCurrencyChanged: (currency) {
-                                  if (currency == null) return;
-                                  _investmentMap[index].currency =
-                                      currency.id;
+                                  _investmentMap[index].currency = currency.id;
                                 },
                                 onAmountChanged: (amount) {
                                   _investmentMap[index].value = amount;
@@ -92,42 +99,23 @@ class _WealthAnalysisInitialInvestAmountState
             AdaptiveButton(
                 type: ButtonType.outlined,
                 onPressed: () => setState(() => _investmentMap.add(
-                    CurrencyValueMap(
-                        currency: Currency.chf.id, value: null))),
+                    CurrencyValueMap(currency: Currency.chf.id, value: null))),
                 child: Text(
                   '+ Add more details',
                   style: TextStyle(fontSize: 12),
                 )),
           ],
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        AdaptiveButton(
-          type: ButtonType.text,
-          onPressed: () {
-            context.read<WealthAnalysisBloc>().add(
-                  WealthAnalysisInitialInvestEvent(initialInvestment: [
-                    CurrencyValueMap(currency: Currency.chf.id, value: null)
-                  ]),
-                );
-          },
-          child: Text('Back'),
-        ),
-        AdaptiveButton(
-          type: ButtonType.elevated,
-          onPressed: () {
+        FooterButtons(
+          onBackPressed: widget.onBackButtonPressed,
+          onProceedPressed: () {
             final isFormValid = _formKey.currentState?.validate() ?? false;
             if (!isFormValid) {
               HapticFeedback.lightImpact();
               return;
             }
-            context.read<WealthAnalysisBloc>().add(
-                  WealthAnalysisInitialInvestEvent(
-                      initialInvestment: _investmentMap),
-                );
+            widget.onNextButtonPressed(_investmentMap);
           },
-          child: Text('Proceed'),
         ),
       ],
     );

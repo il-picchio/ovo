@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ovo/ui/common/widgets/button/button.dart';
-import 'package:ovo/ui/common/widgets/form/adaptive_form.dart';
 import 'package:ovo/ui/pages/investments/wealth_analysis/bloc/wealth_analysis_bloc.dart';
 
 class WealthAnalysisSpending extends StatefulWidget {
+  static const QuestionId id = QuestionId.spending;
   const WealthAnalysisSpending({super.key});
 
   @override
@@ -12,8 +12,7 @@ class WealthAnalysisSpending extends StatefulWidget {
 }
 
 class _WealthAnalysisSpendingState extends State<WealthAnalysisSpending> {
-  final GlobalKey<FormState> _controller =
-      GlobalKey<FormState>();
+  final GlobalKey<FormState> _controller = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -49,24 +48,26 @@ class _WealthAnalysisSpendingState extends State<WealthAnalysisSpending> {
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50.0),
             child: Form(
-              key: _controller,
+                key: _controller,
                 child: Column(
-              children: [
-                AdaptiveFormField(
-                  onChange: (p0) {},
-                  prefix: 'CHF',
-                  inputType: TextInputType.numberWithOptions(decimal: true),
-                  autofocus: true,
-                  validator: (s) => 'text',
-                ),
-                AdaptiveFormDivider(),
-                AdaptiveFormField(
-                  onChange: (p0) {},
-                  prefix: 'CHF',
-                  inputType: TextInputType.numberWithOptions(decimal: true),
-                )
-              ],
-            ))),
+                  children: [
+                    /*
+                    AdaptiveFormField(
+                      onChange: (p0) {},
+                      prefix: 'CHF',
+                      inputType: TextInputType.numberWithOptions(decimal: true),
+                      autofocus: true,
+                      validator: (s) => 'text',
+                    ),
+                    AdaptiveFormDivider(),
+                    AdaptiveFormField(
+                      onChange: (p0) {},
+                      prefix: 'CHF',
+                      inputType: TextInputType.numberWithOptions(decimal: true),
+                    )
+                    */
+                  ],
+                ))),
         const SizedBox(
           height: 20,
         ),
@@ -81,7 +82,7 @@ class _WealthAnalysisSpendingState extends State<WealthAnalysisSpending> {
           type: ButtonType.text,
           onPressed: () => context
               .read<WealthAnalysisBloc>()
-              .add(const WealthAnalysisPreviousStepEvent(currentStep: 3)),
+              .add(const WealthAnalysisPreviousStepEvent(currentStep: WealthAnalysisSpending.id)),
           child: Text('Back'),
         )
       ],

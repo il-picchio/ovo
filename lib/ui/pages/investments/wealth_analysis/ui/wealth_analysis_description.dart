@@ -27,6 +27,7 @@ class WealthAnalysisDescription extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(height: 10,),
         AdaptiveButton(
           type: ButtonType.elevated,
           onPressed: () => context

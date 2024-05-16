@@ -8,7 +8,7 @@ import 'package:ovo/ui/common/widgets/picker/adaptive_picker.dart';
 class CurrencyAmountRow extends StatelessWidget {
   final String currency;
   final String? amount;
-  final void Function(PickerItem<String>?) onCurrencyChanged;
+  final void Function(PickerItem<String>) onCurrencyChanged;
   final void Function(String) onAmountChanged;
   final String? error;
   final String? amountPlaceholder;
@@ -38,7 +38,10 @@ class CurrencyAmountRow extends StatelessWidget {
               flex: 2,
               child: CurrencyPicker(
                 selectedId: currency,
-                onChanged: onCurrencyChanged,
+                onChanged: (currency) {
+                  if (currency == null) return;
+                  onCurrencyChanged(currency);
+                },
               ),
             ),
             const SizedBox(

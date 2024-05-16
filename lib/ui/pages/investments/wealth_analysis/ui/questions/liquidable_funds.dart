@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ovo/ui/common/widgets/adaptive_text_field/adaptive_text_field.dart';
 import 'package:ovo/ui/common/widgets/button/button.dart';
-import 'package:ovo/ui/common/widgets/text_field.dart';
 import 'package:ovo/ui/pages/investments/wealth_analysis/bloc/wealth_analysis_bloc.dart';
 
 class WealthAnalysisLiquidableFunds extends StatefulWidget {
+  static const QuestionId id = QuestionId.liquidableFunds;
   const WealthAnalysisLiquidableFunds({super.key});
 
   @override
@@ -96,7 +97,7 @@ class _WealthAnalysisInvestAmountState
           type: ButtonType.text,
           onPressed: () => context
               .read<WealthAnalysisBloc>()
-              .add(const WealthAnalysisPreviousStepEvent(currentStep: 1)),
+              .add(const WealthAnalysisPreviousStepEvent(currentStep: WealthAnalysisLiquidableFunds.id)),
           child: Text('Back'),
         )
       ],
